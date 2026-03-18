@@ -266,7 +266,7 @@
 
 <header>
     <div class="brand">
-        <img class="logo" src="https://media.istockphoto.com/id/1270859209/pt/foto/kebab-grilled-meat-on-a-cutting-board-with-flour-and-vinaigrette-salad.jpg?s=612x612&w=0&k=20&c=K50axpMgL8NejcoLFl_HV8RI5hIKOgjPJ7AKqSsFcAk=" alt="logo">
+        <img class="logo" src="unnamed.jpg" alt="logo">
         <div>
             <h1>Sip & Snack: — Conveniência</h1>
             <div style="font-size:12px;opacity:0.9">Praticidade • Agilidade • Conveniência.</div>
@@ -489,7 +489,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
             <strong>Sip & Snack- Conveniência</strong><br>
             Brasília - DF • Atendimento 7h–18h<br>
             <div style="margin-top:8px">
-                <button class="btn" onclick="openWhatsApp('Olá, gostaria de informações')">WhatsApp</button>
+                <button class="btn" onclick="openWhatsApp('Olá, gostaria de informações sobre os produtos')">WhatsApp</button>
                 <button class="btn secondary" onclick="showSection('contato')">Contato</button>
             </div>
         </div>
@@ -515,16 +515,16 @@ const sampleProducts = [
     { id: 'p3', type:'espetinho', title:'Queijo coalho', price:12.00, img:'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/quijocoalho.jpg', desc:' Queijo coalho, servido quente.'},
     { id: 'p4', type:'espetinho', title:'Coração', price:10.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKfJRsNu438OsjiJDGgbVx9p45wJKgIpZOw&s', desc:'Coração suculento, tempero especial.'},
     { id: 'p5', type:'espetinho', title:'Linguiça', price:10.00, img:'https://www.vivaespetos.com.br/wp-content/uploads/2021/04/linguica.jpg', desc:'Linguiça artesanal, defumada.'},
-    /* refrigernates */
+    /* Monster */
 
-    { id: 'd1', type:'bebida', title:'Refrigerante', price:6.00, img:'https://andinacocacola.vtexassets.com/arquivos/ids/159186/44.jpg?v=638975402691170000', desc:'Coca Cola Lata 350ml'},
-    { id: 'd2', type:'bebida', title:'Refrigerante', price:6.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXIJnAdSo2hwPABPZwyIPgeUFIBNz7vqbwA&s', desc:'Fanta Laranja 269ml'},
-    { id: 'd3', type:'bebida', title:'Refrigerante', price:6.00, img:'https://www.imigrantesbebidas.com.br/img/bebida/images/products/full/1905-refrigerante-fanta-uva-lata-220ml.jpg?s=61ddfb2e04046dd33a128f69d39c0c77', desc:'Fanta Uva 269ml'},
-    { id: 'd4', type:'bebida', title:'Refrigerante', price:6.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWlL1pdpwRe1a0c-fgQIfVL2sYZmG2brcErQ&s', desc:'Guaraná Lata 269ml'},
-    { id: 'd5', type:'bebida', title:'Refrigerante', price:10.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGplDC1GdOGWeUwzjGsGaIoDPYPkLuV_vC_A&s', desc:'Coca Cola 600ml'},
+    { id: 'd1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
+    { id: 'd2', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
+    { id: 'd3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
+    { id: 'd4', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
+    { id: 'd5', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
 
-    /*cervejas*/ 
-        { id: 'd6', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+    /*refrigente */ 
+        { id: 'd6', type:'bebida', title:'Monster Ultra Watermelon', price:7.50, img:'download.jpg', desc:' Monster Ultra Watermelon.'},
         { id: 'd7', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
         { id: 'd8', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
         { id: 'd9', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
@@ -913,7 +913,6 @@ function sendContact(e){
     const name = qs('cName').value || 'Cliente';
     const phone = qs('cPhone').value || '';
     const msg = qs('cMsg').value || '';
-
     // Salva nome do cliente
     localStorage.setItem('clientName', name);
 
