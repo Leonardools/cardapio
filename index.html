@@ -6,6 +6,9 @@
 <title> Sip & Snack: — Loja Online</title>
 <link rel="icon" href="">
 <style>
+
+
+
     /* VARIÁVEIS DE TEMA */
     :root{
         --bg:#f6f6f6; --card:#fff; --accent:#d62828; --accent-2:#f77f00; --text:#222;
@@ -286,7 +289,6 @@
     <div class="top-actions">
         <div class="topbar">
             <input id="search" class="search" placeholder="Pesquisar..." oninput="renderProducts()" />
-
         </div>
 
         <button class="icon-btn" onclick="toggleTheme()" title="Alternar tema">🌙</button>
@@ -413,7 +415,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
             </div>
             <div>
                 <h4>Localização</h4>
-                <iframe id="gmap" src="https://www.google.com/maps/place/RS+Distribuidora+de+Bebidas,+Tabacaria+e+Mercearia/@-16.0385738,-48.0617678,3a,75y,142.5h,91.41t/data=!3m7!1e1!3m5!1s_NM0hiqZt-SGyvYqcM9A7w!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.4064511633712584%26panoid%3D_NM0hiqZt-SGyvYqcM9A7w%26yaw%3D142.49992107391395!7i16384!8i8192!4m6!3m5!1s0x935981faa0e1c2e3:0x47928883c816a575!8m2!3d-16.0386748!4d-48.0617369!16s%2Fg%2F11q99p6pwr?authuser=0&entry=ttu&g_ep=EgoyMDI1MTExOC4wIKXMDSoASAFQAw%3D%3D" width="100%" height="320" style="border:0;border-radius:8px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe id="gmap" src="  " width="100%" height="320" style="border:0;border-radius:8px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -435,9 +437,11 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
                     <button class="btn secondary" onclick="closeCart()">Fechar</button> 
                 </div>
             </div>
-            // aqui é a imagem do carrinho, pode ser substituida por outra imagem ou removida se preferir um design mais limpo
-            <img src="unnamed.jpg" alt="cart" style="object-fit:cover;height:100%">
-        </div>
+
+   
+          
+            <img src="unnamed.jpg" alt="cart" style="object-fit:cover;height:100%"> /* Imagem decorativa para o carrinho */
+          </div>
     </div>
 
     <div id="productModalBackdrop" class="modal-backdrop">
@@ -497,7 +501,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
         <div style="text-align:right">
             <div class="muted">Siga-nos</div>
             <div style="margin-top:8px">
-                <a class="pill" href="#" onclick="alert('https://instagram.com/espetinhodomayos/')">Instagram</a>
+                <a class="pill" href="#" onclick="alert('Abrir Instagram')">Instagram</a>
                 <a class="pill" href="#" onclick="alert('Abrir Facebook')" style="margin-left:6px">Facebook</a>
             </div>
             <div style="margin-top:8px;font-size:12px" class="muted">© 2025 • Todos os direitos reservados</div>
@@ -512,26 +516,36 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
    =========================== */
 const sampleProducts = [
 
-    { id: 'p6', type:'comida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'p7', type:'comida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
-    { id: 'p8', type:'comida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'p9', type:'comida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'p10', type:'comida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
+    /*  HOME INICIAL */
+    { id: 'p1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
+    { id: 'p2',  type:'bebida', title:'Monster Tradicional', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
+    { id: 'p3', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
+    { id: 'p4', type:'bebida', title:' Monster Energy Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'},
+    { id: 'p5',  type:'bebida', title:'Água com gás', price:3.50, img:'com gás.jpg', desc:'Água com gás 500ml'},
+
+    /* COMIDA */
+    { id: 'p22', type:'comida', title:'EM BREVE !!!', price:0.00, img:'      ', desc:'EM BREVE !!!'},
+    { id: 'p23', type:'comida', title:'EM BREVE !!!', price:0.00, img:'     ', desc:'  EM BREVE !!!'},
+    { id: 'p24', type:'comida', title:'EM BREVE !!!', price:0.00, img:'      ', desc:'  EM BREVE !!!'},
+    { id: 'p25', type:'comida', title:'EM BREVE !!!', price:0.00, img:'    ', desc:'EM BREVE !!!'},
+    { id: 'p26', type:'comida', title:'EM BREVE !!!', price:0.00, img:'   ', desc:'EM BREVE !!!'},
 
     /* Monster */
 
-    { id: 'd1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'd2', type:'bebida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
+   /*    INATIVO POR ENQUANTO  { id: 'd1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'}, */
+    { id: 'd5', type:'bebida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
     { id: 'd3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'd4', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'd5', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
-
+    { id: 'd4', type:'bebida', title:'Monster Tradicional', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
+   /*     INATIVO POR ENQUANTO     { id: 'd2', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'}, */
+    { id: 'd6', type:'bebida', title:'Monster Energy Absolutely Zero', price:12.00, img:'absoluty.jpg', desc:'Monster Energy Absolutely Zero 473ml'},
     /*refrigente */ 
-        { id: 'd6', type:'bebida', title:'Monster Ultra Watermelon', price:7.50, img:'download.jpg', desc:' Monster Ultra Watermelon.'},
+        { id: 'd11', type:'bebida', title:'Monster Tradicional Zero', price:12.00, img:'zeroooooooooo.jpg', desc:'Monster Tradicional Zero 473ml'},
+       /* INATIVO POR ENQUANTO  { id: 'd12', type:'bebida', title:' Monster Energy Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'}, */
+        { id: 'd10', type:'bebida', title:'Monster Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
         { id: 'd7', type:'bebida', title:'Coca Cola Zero', price:4.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero 350ml'},
         { id: 'd8', type:'bebida', title:'Coca Cola', price:4.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 350ml'},
-        { id: 'd9', type:'bebida', title:'Água com gás', price:3.50, img:'com gás.jpg', desc:'Água com gás 500ml'},
-                   
+       /* { id: 'd9', type:'bebida', title:'Água com gás', price:3.50, img:'com gás.jpg', desc:'Água com gás 500ml'},        INATIVO POR ENQUANTO */
+               
 ];
 
 const sampleCombos = [
@@ -562,11 +576,12 @@ if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]
 
 
 /* ===========================
-   Estado e utilitários
+   Estado e utilitários               variaveis 
    =========================== */
 let currentSection = 'home';
 let selectedProduct = null;
 let currentStar = 5;
+let isAdmin = false;
 const whatsNumber = '5561998710947'; // número real do dono do restaurante
 
 function qs(id){ return document.getElementById(id) }
@@ -634,7 +649,7 @@ function getCombos(){ return JSON.parse(localStorage.getItem('combos') || '[]');
 function renderQuickGrid(){
     const grid = qs('quickGrid');
     grid.innerHTML = '';
-    const prods = getProducts() .slice(0,8);    // quantidade de produto mostrado na tela inical 
+    const prods = getProducts() .slice(0,5);    // quantidade de produto mostrado na tela inical 
     prods.forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
@@ -965,16 +980,27 @@ function openAdmin(){
 
 function unlockAdmin(){
     const pass = qs('adminPass').value;
-    if(pass === 'admin123'){ openAdminModal(); } else alert('Senha incorreta. DICA: "admin ..."');
+
+    if(pass === 'admin321'){
+        isAdmin = true; // libera acesso
+        alert('Acesso liberado!');
+        openAdminModal();
+    } else {
+        alert('Senha incorreta');
+    }
 }
 
 function openAdminModal(){
+        if(!isAdmin){
+            alert('Acesso negado! Faça login como admin.');
+            return;
+        }
     const modalRoot = document.createElement('div');
     modalRoot.style.position='fixed'; modalRoot.style.inset=0; modalRoot.style.background='rgba(0,0,0,0.45)'; modalRoot.style.display='flex'; modalRoot.style.alignItems='center'; modalRoot.style.justifyContent='center'; modalRoot.style.zIndex=200;
     const box = document.createElement('div'); box.style.background = getComputedStyle(document.body).getPropertyValue('--card'); box.style.padding='18px'; box.style.borderRadius='12px'; box.style.width='600px'; box.style.maxHeight='90vh'; box.style.overflow='auto';
     box.innerHTML = `<h3>Painel Admin - Adicionar Produto</h3>
         <label>Título</label><input id="adm_title" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
-        <label>Tipo (espetinho|bebida)</label><input id="adm_type" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" value="espetinho">
+        <label>Tipo (Doces|bebida)</label><input id="adm_type" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" value="espetinho">
         <label>Preço</label><input id="adm_price" type="number" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
         <label>Imagem URL</label><input id="adm_img" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
         <label>Descrição</label><textarea id="adm_desc" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px"></textarea>
