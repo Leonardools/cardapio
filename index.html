@@ -513,16 +513,16 @@ const sampleProducts = [
     { id: 'p1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
     { id: 'p2', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
     { id: 'p3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'p4', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},,
+    { id: 'p4', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
     { id: 'p5', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
-    { id: 'p5', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'p6', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
-    { id: 'p7', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'p8', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'p9', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
+    { id: 'p6', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
+    { id: 'p7', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
+    { id: 'p8', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
+    { id: 'p9', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
+    { id: 'p10', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
 
     /* Monster */
-    
+
     { id: 'd1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
     { id: 'd2', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
     { id: 'd3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
@@ -642,7 +642,7 @@ function getCombos(){ return JSON.parse(localStorage.getItem('combos') || '[]');
 function renderQuickGrid(){
     const grid = qs('quickGrid');
     grid.innerHTML = '';
-    const prods = getProducts().slice(0,4);
+    const prods = getProducts() ;
     prods.forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
@@ -653,7 +653,7 @@ function renderQuickGrid(){
 
 function renderProducts(){
     const q = qs('search').value.toLowerCase();
-    const prods = getProducts().filter(p => p.type === 'espetinho' && (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
+    const prods = getProducts().filter(p => p.type === 'Doce e variados' && (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
     const grid = qs('productsGrid'); grid.innerHTML = '';
     prods.forEach(p => {
         const div = document.createElement('div'); div.className='card';
