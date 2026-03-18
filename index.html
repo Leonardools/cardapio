@@ -917,7 +917,7 @@ function sendContact(e){
     // Salva nome do cliente
     localStorage.setItem('clientName', name);
 
-    const text = `Olá! Meu nome é *${name}*.%0A📞 Telefone: ${phone}%0A%0A${msg}`;
+    const text = `Olá! Meu nome é * ${name}*.📞 Telefone: ${phone} Mensagem: ${msg}`;
     openWhatsApp(text);
 }
 
