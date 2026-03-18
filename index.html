@@ -286,7 +286,7 @@
     <div class="top-actions">
         <div class="topbar">
             <input id="search" class="search" placeholder="Pesquisar..." oninput="renderProducts()" />
-            <div id="promoBadge" class="pill promo hidden">Promoção • <span id="promoName"></span></div>
+
         </div>
 
         <button class="icon-btn" onclick="toggleTheme()" title="Alternar tema">🌙</button>
@@ -341,7 +341,7 @@
     </section>
 
     <section id="cardapioSection" class="hidden">
-        <h2>🍢 Cardápio — Espetinhos</h2>
+        <h2>🍢 Cardápio </h2>
         <div class="grid" id="productsGrid" style="margin-top:12px"></div>
     </section>
 
@@ -357,7 +357,7 @@
                 <div style="display:flex;justify-content:space-between;align-items:center">
                     <div>
                         <div class="muted">Promoção do Dia</div>
-                        <div id="promoTitle" style="font-size:18px;font-weight:800;margin-top:6px">Espeto + Refri</div>
+                        <div id="promoTitle" style="font-size:18px;font-weight:800;margin-top:6px"> Monster</div>
                         <div class="muted" style="margin-top:6px">Preço especial por tempo limitado</div>
                     </div>
                     <div class="center">
@@ -435,7 +435,8 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
                     <button class="btn secondary" onclick="closeCart()">Fechar</button> 
                 </div>
             </div>
-            <img src="https://i.pinimg.com/736x/87/03/f4/8703f4ddff5b3c395f009d827748638e.jpg" alt="cart" style="object-fit:cover;height:100%">
+            // aqui é a imagem do carrinho, pode ser substituida por outra imagem ou removida se preferir um design mais limpo
+            <img src="unnamed.jpg" alt="cart" style="object-fit:cover;height:100%">
         </div>
     </div>
 
@@ -510,36 +511,27 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
    Dados iniciais
    =========================== */
 const sampleProducts = [
-    { id: 'p1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'p2', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
-    { id: 'p3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'p4', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'p5', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
-    { id: 'p6', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'p7', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
-    { id: 'p8', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'p9', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'p10', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
+
+    { id: 'p6', type:'comida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
+    { id: 'p7', type:'comida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
+    { id: 'p8', type:'comida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
+    { id: 'p9', type:'comida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
+    { id: 'p10', type:'comida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
 
     /* Monster */
 
     { id: 'd1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'd2', type:'bebida', title:'Monster Laranja', price:12.00, img:' ', desc:'Monster Mongo Laranja 473ml'},
+    { id: 'd2', type:'bebida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
     { id: 'd3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
     { id: 'd4', type:'bebida', title:'Monster Tradiconal', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
     { id: 'd5', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
 
     /*refrigente */ 
         { id: 'd6', type:'bebida', title:'Monster Ultra Watermelon', price:7.50, img:'download.jpg', desc:' Monster Ultra Watermelon.'},
-        { id: 'd7', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
-        { id: 'd8', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
-        { id: 'd9', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
-        { id: 'd10', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
-        { id: 'd11', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
-        { id: 'd12', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
-    
-         
-        
+        { id: 'd7', type:'bebida', title:'Coca Cola Zero', price:4.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero 350ml'},
+        { id: 'd8', type:'bebida', title:'Coca Cola', price:4.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 350ml'},
+        { id: 'd9', type:'bebida', title:'Água com gás', price:3.50, img:'com gás.jpg', desc:'Água com gás 500ml'},
+                   
 ];
 
 const sampleCombos = [
@@ -642,7 +634,7 @@ function getCombos(){ return JSON.parse(localStorage.getItem('combos') || '[]');
 function renderQuickGrid(){
     const grid = qs('quickGrid');
     grid.innerHTML = '';
-    const prods = getProducts() ;
+    const prods = getProducts() .slice(0,8);    // quantidade de produto mostrado na tela inical 
     prods.forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
@@ -652,12 +644,35 @@ function renderQuickGrid(){
 }
 
 function renderProducts(){
-    const q = qs('search').value.toLowerCase();
-    const prods = getProducts().filter(p => p.type === 'Doce e variados' && (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
-    const grid = qs('productsGrid'); grid.innerHTML = '';
+   const q = qs('search').value.toLowerCase();
+    const prods = getProducts().filter(p => 
+        p.type === 'comida' && 
+        (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))
+        );
+    const grid = qs('productsGrid');
+    grid.innerHTML = '';
+    if(prods.length === 0){
+        grid.innerHTML = '<p class="muted">Nenhum produto encontrado...</p>';
+        return;
+    }
     prods.forEach(p => {
-        const div = document.createElement('div'); div.className='card';
-        div.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="body"><h3>${p.title}</h3><p class="muted">${p.desc}</p><div class="actions"><div class="price">${money(p.price)}</div><div style="margin-left:auto"><button class="btn" onclick="openProduct('${p.id}')">Detalhes</button> <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button></div></div></div>`;
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+        <img src="${p.img}" alt="${p.title}">
+        <div class="body">
+            <h3>${p.title}</h3>
+            <p class="muted">${p.desc}</p>
+
+            <div class="actions">
+                <div class="price">${money(p.price)}</div>
+                <div style="margin-left:auto">
+                    <button class="btn" onclick="openProduct('${p.id}')">Detalhes</button>
+                    <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+        `;
         grid.appendChild(div);
     });
 }
