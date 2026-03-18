@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Espetinhos do Mayos — Loja Online</title>
+<link rel="icon" href="">
+<style>
+    /* VARIÁVEIS DE TEMA */
+    :root{
+        --bg:#f6f6f6; --card:#fff; --accent:#d62828; --accent-2:#f77f00; --text:#222;
+        --glass: rgba(255,255,255,0.6);
+        --header-height: 66px; /* Altura do cabeçalho fixo */
+    }
+    [data-theme="dark"]{
+        --bg:#121212; --card:#1c1c1c; --accent:#ff6b6b; --accent-2:#ff9f1c; --text:#eee; --glass: rgba(0,0,0,0.45);
+    }
+
+    /* GERAL */
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#fff);color:var(--text);-webkit-font-smoothing:antialiased}
+    main{padding:20px;max-width:1200px;margin:20px auto}
+    .hidden{display:none}
+
+    /* CABEÇALHO (HEADER) */
+    header{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:10px 18px;
+        background:linear-gradient(90deg,var(--accent),var(--accent-2));
+        color:#fff;
+        position:sticky;
+        top:0;
+        z-index:30;
+        box-shadow:0 4px 12px rgba(0,0,0,0.12);
+        min-height: var(--header-height);
+    }
+    header .brand{display:flex;gap:12px;align-items:center}
+    header img.logo{width:46px;height:46px;border-radius:8px;object-fit:cover;box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+    header h1{margin:0;font-size:20px;letter-spacing:0.4px}
+
+    /* NAVEGAÇÃO DESKTOP (NOVO) */
+    .desktop-nav {
+        display: none; /* Inicia oculto, será exibido no @media (PC) */
+        gap: 8px;
+        flex-grow: 1; /* Ocupa o espaço central */
+        margin: 0 20px;
+    }
+    .desktop-nav button {
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        white-space: nowrap; /* Evita quebras de linha nos botões */
+    }
+    .desktop-nav button:hover, .desktop-nav button.active {
+        background: rgba(255,255,255,0.3);
+    }
+    
+    /* AÇÕES DO TOPO (PESQUISA, TEMA, ADMIN, CARRINHO) */
+    header .top-actions{display:flex;gap:10px;align-items:center; flex-wrap: nowrap;}
+    .icon-btn{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px; transition: 0.2s;}
+    .icon-btn:hover{transform:translateY(-2px)}
+    .topbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .search{padding:8px 10px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);min-width:150px; color: var(--text);}
+
+    /* MENU LATERAL (MOBILE) */
+    nav.side{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 100%;
+        background: var(--card);
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        padding-top: var(--header-height); /* Desce abaixo do header */
+        transform: translateX(-260px);
+        transition: 0.4s ease;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 200;
+        display: flex; /* Manter display: flex para o JS funcionar */
+    }
+
+    nav.side.open {
+        transform: translateX(0);
+    }
+
+    nav.side button{
+        background: transparent;
+        border: none;
+        padding: 14px 20px;
+        text-align: left;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 8px;
+        color: var(--text);
+    }
+
+    nav.side button:hover, nav.side button.active{
+        background: var(--accent);
+        color: #fff;
+    }
+    
+    /* COMPONENTES */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.08);transition:transform .18s,box-shadow .18s}
+    /* ... (restante do CSS de .card, .btn, .modal, .admin-panel, etc. - Sem alterações) */
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(0,0,0,0.12)}
+    .card img{width:100%;height:170px;object-fit:cover;display:block}
+    .card .body{padding:12px}
+    .card h3{margin:0 0 6px 0;color:var(--accent)}
+    .card p{margin:0 0 10px 0;color:rgba(0,0,0,0.7)}
+    .price{font-weight:700}
+    .card .actions{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--accent-2);border:none;padding:8px 10px;border-radius:10px;color:#fff;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(0,0,0,0.08);color:var(--text)}
+    .cart-float{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:12px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.2);z-index:40}
+    .cart-float .count{background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:8px;margin-left:8px}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal{background:var(--card);width:90%;max-width:900px;border-radius:12px;overflow:hidden;display:flex;gap:12px;position: relative;}
+    .close-modal-x {position: absolute;top: 10px;right: 18px;background: none;border: none;color: var(--text);font-size: 28px;font-weight: bold;cursor: pointer;padding: 10px;line-height: 1;z-index: 10;opacity: 0.7;transition: opacity 0.2s;}
+    .close-modal-x:hover {opacity: 1;}
+    .modal.large img{height:360px;width:50%;object-fit:cover}
+    .modal .content{padding:18px;flex:1}
+    .promo{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:8px;border-radius:10px;font-weight:700;display:inline-block}
+    .countdown{font-weight:800}
+    footer{margin-top:40px;padding:28px;background:var(--card);border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.06)}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .gallery img{width:100%;height:100px;object-fit:cover;border-radius:8px;cursor:pointer}
+    .admin-panel{position:fixed;right:18px;top:calc(var(--header-height) + 18px);background:var(--card);padding:12px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.12); z-index: 100;}
+    .stars{display:inline-block}
+    .stars input{display:none}
+    .stars label{cursor:pointer;padding:2px 6px;border-radius:6px;background:rgba(0,0,0,0.05);margin-right:6px}
+    .muted{color:rgba(0,0,0,0.6);font-size:14px}
+    .center{text-align:center}
+    .pill{display:inline-block;padding:6px 10px;border-radius:20px;background:var(--glass)}
+
+    /* ================================================================= */
+    /* RESPONSIVIDADE (MOBILE / TELAS PEQUENAS) */
+    /* Telas menores que 1024px (Tabelts e Celulares) */
+    /* ================================================================= */
+    @media(max-width:1024px){
+        .desktop-nav {
+            display: none; /* Esconde a navegação da barra superior */
+        }
+        #openMenuBtn {
+            display: inline-flex !important; /* Mostra o botão do menu hamburger */
+        }
+    }
+    
+    /* Telas menores que 880px (Celulares) */
+    @media(max-width:880px){
+        header {
+            flex-direction: column; /* Faz o cabeçalho empilhar */
+            align-items: flex-start;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            height: auto;
+        }
+
+        header .brand {
+            width: 100%;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .topbar {
+            order: 3; /* Move a barra de pesquisa para baixo */
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .search {
+            min-width: 100%;
+        }
+
+        .top-actions {
+            justify-content: space-between;
+            width: 100%;
+            gap: 6px;
+        }
+        
+        .top-actions .icon-btn:not(#openMenuBtn) {
+            padding: 8px; /* Menor padding para botões de ação */
+        }
+
+        .gallery{grid-template-columns:repeat(2,1fr)}
+        .cols{grid-template-columns:1fr}
+        .modal.large img{display:none} /* Esconde a imagem grande no modal */
+        
+        /* Ajusta a posição do admin panel para o novo header height */
+        .admin-panel {
+            top: 140px; 
+        }
+    }
+    
+    /* Fix para o botão de menu, garantindo que ele só apareça em mobile/tablet */
+    @media(min-width:1025px) {
+        #openMenuBtn {
+            display: none !important;
+        }
+        .desktop-nav {
+            display: flex; /* Exibe a navegação da barra superior no PC */
+        }
+    }
+
+    /* Dentro da tag <style> */
+/* ... */
+.modal{background:var(--card);width:90%;max-width:900px;border-radius:12px;overflow:hidden;display:flex;gap:12px;position: relative;}
+
+/* ESTILO DO BOTÃO 'X' DE FECHAR carrinho */
+.close-modal-x {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 1;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+.close-modal-x:hover {
+    opacity: 1;
+}
+/* ... */
+
+/* wpp */ 
+#whatsappFloat{
+    position: fixed;
+    bottom: 22px;
+    left: 22px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    z-index: 999;
+    transition: transform 0.2s;
+}
+
+#whatsappFloat:hover{
+    transform: scale(1.1);
+}
+
+</style>
+</head>
+<body data-theme="light">
+
+<header>
+    <div class="brand">
+        <img class="logo" src="https://media.istockphoto.com/id/1270859209/pt/foto/kebab-grilled-meat-on-a-cutting-board-with-flour-and-vinaigrette-salad.jpg?s=612x612&w=0&k=20&c=K50axpMgL8NejcoLFl_HV8RI5hIKOgjPJ7AKqSsFcAk=" alt="logo">
+        <div>
+            <h1>Espetinhos do Mayos</h1>
+            <div style="font-size:12px;opacity:0.9">Sabor, fumaça e tradição.</div>
+        </div>
+        <button id="openMenuBtn" class="icon-btn" onclick="openMenu()" title="Abrir Menu">☰</button>
+    </div>
+
+    <nav class="desktop-nav" id="desktopNav">
+        <button onclick="showSection('home')" id="d-btn-home" class="active">🏠 Home</button>
+        <button onclick="showSection('cardapio')" id="d-btn-cardapio">🍢 Cardápio</button>
+        <button onclick="showSection('bebidas')" id="d-btn-bebidas">🥤 Bebidas</button>
+        <button onclick="showSection('promocoes')" id="d-btn-promos">💥 Promoções</button>
+        <button onclick="showSection('sobre')" id="d-btn-sobre">ℹ️ Sobre</button>
+        <button onclick="showSection('contato')" id="d-btn-contato">📞 Contato</button>
+    </nav>
+    
+    <div class="top-actions">
+        <div class="topbar">
+            <input id="search" class="search" placeholder="Pesquisar..." oninput="renderProducts()" />
+            <div id="promoBadge" class="pill promo hidden">Promoção • <span id="promoName"></span></div>
+        </div>
+
+        <button class="icon-btn" onclick="toggleTheme()" title="Alternar tema">🌙</button>
+
+        <button class="icon-btn" onclick="openAdmin()" title="Admin">⚙️</button>
+
+        <button class="icon-btn" onclick="openCart()" title="Carrinho">🛒 <span id="cartCount" class="count" style="margin-left:6px;background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:10px">0</span></button>
+    </div>
+</header>
+
+<nav class="side" id="sideNav">
+    <span onclick="closeMenu()" style="position:absolute; top:20px; right:20px; font-size:30px; cursor:pointer;">×</span> 
+    <button onclick="showSection('home')" id="btn-home" class="active">🏠 Home</button>
+    <button onclick="showSection('cardapio')" id="btn-cardapio">🍢 Cardápio</button>
+    <button onclick="showSection('bebidas')" id="btn-bebidas">🥤 Bebidas</button>
+    <button onclick="showSection('promocoes')" id="btn-promos">💥 Promoções</button>
+    <button onclick="showSection('sobre')" id="btn-sobre">ℹ️ Sobre</button>
+    <button onclick="showSection('eventos')" id="btn-eventos">🎉 Eventos</button>
+    <button onclick="showSection('contato')" id="btn-contato">📞 Contato</button>
+</nav>
+
+<nav class="admin-panel" id="adminPanel" style="display:none">
+    <div style="font-weight:700;margin-bottom:8px">Painel Admin</div> 
+    <button class="btn" onclick="openAdminModal()">Adicionar Produto</button>
+    <div style="margin-top:8px">
+        <label class="muted">Senha rápida</label>
+        <input id="adminPass" style="width:100%;padding:6px;border-radius:8px;border:1px solid #ddd;margin-top:6px" placeholder="Digite sua Senha:" />
+        <button class="btn secondary" style="width:100%;margin-top:8px" onclick="unlockAdmin()">Desbloquear</button>
+    </div>
+</nav>
+
+<main id="main">
+    <section id="homeSection">
+        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1;min-width:280px">
+                <h2>Bem-vindo ao Espetinhos do Mayos</h2>
+                <p class="muted">O melhor lugar para saborear espetinhos, bebidas geladas e combos especiais.</p>
+                <div style="margin-top:12px;display:flex;gap:8px">
+                    <button class="btn" onclick="showSection('cardapio')">Ver Cardápio</button>
+                    <button class="btn secondary" onclick="showSection('promocoes')">Ver Promoções</button>
+                </div>
+                <div style="margin-top:14px">
+                    <span class="muted">Endereço:</span> St. Sul Q 13/15 - Gama Brasília - DF • <span class="muted">Horario:</span> 17:00 - 23:00
+                </div>
+            </div>
+            <div style="width:360px">                                                                                   
+                <img src="https://uploads.metroimg.com/wp-content/uploads/2023/09/15160217/confira-6-lugares-para-comer-jantinha-no-DF.jpg" style="width:100%;border-radius:22px;box-shadow:0 10px 30px rgba(67, 32, 181, 0.12)" alt="churrasco">
+            </div>
+        </div>
+
+        <h3 style="margin: top 26px;">Cardápio rápido</h3>
+        <div id="quickGrid" class="grid" style="margin-top:12px"></div>
+    </section>
+
+    <section id="cardapioSection" class="hidden">
+        <h2>🍢 Cardápio — Espetinhos</h2>
+        <div class="grid" id="productsGrid" style="margin-top:12px"></div>
+    </section>
+
+    <section id="bebidasSection" class="hidden">
+        <h2>🥤 Bebidas</h2>
+        <div class="grid" id="drinksGrid" style="margin-top:12px"></div>
+    </section>
+
+    <section id="promocoesSection" class="hidden">
+        <h2>💥 Promoções</h2>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            <div class="card" style="padding:14px;min-width:240px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div>
+                        <div class="muted">Promoção do Dia</div>
+                        <div id="promoTitle" style="font-size:18px;font-weight:800;margin-top:6px">Espeto + Refri</div>
+                        <div class="muted" style="margin-top:6px">Preço especial por tempo limitado</div>
+                    </div>
+                    <div class="center">
+                        <div class="countdown" id="promoTimer">00:00:00</div>
+                        <button class="btn" onclick="addPromoToCart()">Adicionar Promo</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex:1">
+                <p class="muted">Combos especiais, descontos para retiradas.</p>
+            </div>
+        </div>
+        <h3 style="margin-top:18px">Combos</h3>
+        <div class="grid" id="combosGrid" style="margin-top:12px"></div>
+    </section>
+
+    <section id="sobreSection" class="hidden">
+       <h2>ℹ️ Sobre Nós</h2>
+        <div class="cols">
+            <div>
+                <p>Nascemos em 2025, somos apaixonados por churrasco e acreditamos que bons momentos começam com boa comida, nossa empresa nasceu com o propósito de levar espetinhos saborosos, bem preparados e feitos com ingredientes selecionados, sempre prezando pela qualidade, higiene e atendimento diferenciado.
+Cada espetinho é preparado com cuidado, desde a escolha das carnes até o ponto ideal na brasa, garantindo sabor, suculência e aquele gostinho que conquista no primeiro pedaço. Mais do que vender espetinhos, entregamos experiências, encontros e momentos especiais.</p>
+                <ul>
+                    <li>Missão:Oferecer espetinhos de alta qualidade, com sabor marcante e preparo responsável, proporcionando satisfação, confiança e alegria aos nossos clientes em cada atendimento.</li>
+                    <li>Visão:Ser reconhecida como referência em espetinhos na região, destacando-se pela qualidade dos produtos, excelência no atendimento e compromisso com a satisfação do cliente.</li>
+                    <li>Valores: Qualidade, Compromisso com o cliente, Higiene, segurança alimentar, respeito e sabor</li>
+                </ul>
+            </div>
+             </div>
+    </section>
+
+    <section id="contatoSection" class="hidden">
+        <h2>📞 Contato e Localização</h2>
+        <div class="cols" style="align-items:start">
+            <div>
+                <form id="contactForm">
+                    <label>Nome</label><br>
+                    <input id="cName" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" required><br><br>
+                    <label>Telefone</label><br>
+                    <input id="cPhone" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" required><br><br>
+                    <label>Mensagem</label><br>
+                    <textarea id="cMsg" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" rows="4"></textarea><br><br>
+                    <button class="btn" onclick="sendContact(event)">Enviar via WhatsApp</button>
+                </form>
+                <h4 style="margin-top:12px">Formas de Pagamento</h4>
+                <p class="muted">Aceitamos Dinheiro, Cartões e PIX. Gere um QR Code de pagamento abaixo:</p>
+                <div style="display:flex;gap:8px;align-items:center">
+                    <input id="pixValue" placeholder="Valor R$" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:120px">
+                    <button class="btn" onclick="generateQR()">Gerar QR</button>
+                </div>
+                <div id="qrcode" style="margin-top:12px"></div>
+            </div>
+            <div>
+                <h4>Localização</h4>
+                <iframe id="gmap" src="https://www.google.com/maps/place/RS+Distribuidora+de+Bebidas,+Tabacaria+e+Mercearia/@-16.0385738,-48.0617678,3a,75y,142.5h,91.41t/data=!3m7!1e1!3m5!1s_NM0hiqZt-SGyvYqcM9A7w!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.4064511633712584%26panoid%3D_NM0hiqZt-SGyvYqcM9A7w%26yaw%3D142.49992107391395!7i16384!8i8192!4m6!3m5!1s0x935981faa0e1c2e3:0x47928883c816a575!8m2!3d-16.0386748!4d-48.0617369!16s%2Fg%2F11q99p6pwr?authuser=0&entry=ttu&g_ep=EgoyMDI1MTExOC4wIKXMDSoASAFQAw%3D%3D" width="100%" height="320" style="border:0;border-radius:8px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+<div id="cartModal" class="modal-backdrop">
+        <div class="modal large">
+            <button class="close-modal-x" onclick="closeCart()">×</button>
+            
+            <div style="padding:18px;width:420px">
+                <h3>Carrinho</h3>
+                <div id="cartItems" style="max-height:360px;overflow:auto;margin-top:12px"></div>
+                <div style="display:flex;justify-content:space-between;margin-top:12px">
+                    <div class="muted">Total</div>
+                    <div id="cartTotal" style="font-weight:800">R$ 0,00</div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px">
+                    <button class="btn" onclick="checkoutWhatsApp()">Fazer pedido via WhatsApp</button>
+                    <button class="btn secondary" onclick="clearCart()">Limpar</button>
+                    <button class="btn secondary" onclick="closeCart()">Fechar</button> 
+                </div>
+            </div>
+            <img src="https://i.pinimg.com/736x/87/03/f4/8703f4ddff5b3c395f009d827748638e.jpg" alt="cart" style="object-fit:cover;height:100%">
+        </div>
+    </div>
+
+    <div id="productModalBackdrop" class="modal-backdrop">
+        <div class="modal large" id="productModal">
+            <button class="close-modal-x" onclick="closeProductModal()">×</button>
+            
+            <img id="modalImg" src="" alt="produto">
+            <div class="content">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDesc" class="muted"></p>
+                <p><span id="modalPrice" class="price">R$ 0,00</span></p>
+                <div style="margin-top:12px">
+                    <label>Qtd</label>
+                    <input id="modalQty" type="number" value="1" min="1" style="width:80px;padding:8px;border-radius:8px;border:1px solid #ddd;margin-left:8px">
+                </div>
+                <div style="margin-top:12px;display:flex;gap:8px">
+                    <button class="btn" onclick="addModalToCart()">Adicionar ao Carrinho</button>
+                    <button class="btn secondary" onclick="playSizzle()">Tocar Som</button>
+                    <button class="btn secondary" onclick="closeProductModal()">Fechar</button> 
+                </div>
+
+                <hr style="margin:12px 0">
+                <div>
+                    <h4>Avaliações</h4>
+                    <div id="reviewsList" style="max-height:160px;overflow:auto"></div>
+                    <div style="margin-top:8px">
+                        <div class="stars" id="starInput">
+                            <label onclick="setStar(1)">1⭐</label>
+                            <label onclick="setStar(2)">2⭐</label>
+                            <label onclick="setStar(3)">3⭐</label>
+                            <label onclick="setStar(4)">4⭐</label>
+                            <label onclick="setStar(5)">5⭐</label>
+                        </div>
+                        <input id="reviewName" placeholder="Seu nome" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:100%;margin-top:8px">
+                        <textarea id="reviewText" placeholder="Escreva sua avaliação..." rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:8px"></textarea>
+                        <button class="btn" style="margin-top:8px" onclick="submitReview()">Enviar Avaliação</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+<footer>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+            <strong>Espetinhos do Mayos</strong><br>
+            St. Sul Q 13/15 - Gama Brasília - DF • Atendimento 17h–23h<br>
+            <div style="margin-top:8px">
+                <button class="btn" onclick="openWhatsApp('Olá, gostaria de informações')">WhatsApp</button>
+                <button class="btn secondary" onclick="showSection('contato')">Contato</button>
+            </div>
+        </div>
+        <div style="text-align:right">
+            <div class="muted">Siga-nos</div>
+            <div style="margin-top:8px">
+                <a class="pill" href="#" onclick="alert('https://instagram.com/espetinhodomayos/')">Instagram</a>
+                <a class="pill" href="#" onclick="alert('Abrir Facebook')" style="margin-left:6px">Facebook</a>
+            </div>
+            <div style="margin-top:8px;font-size:12px" class="muted">© 2025 • Todos os direitos reservados</div>
+        </div>
+    </div>
+</footer>
+
+<script>
+
+/* ===========================
+   Dados iniciais
+   =========================== */
+const sampleProducts = [
+    { id: 'p1', type:'espetinho', title:'Carne', price:10.00, img:'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/carne.jpg', desc:'Espeto de carne bovina, temperado e suculento.'},
+    { id: 'p2', type:'espetinho', title:'Medalhão de Frango', price:10.00, img:'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/medfrango.jpg', desc:'Frango bem temperado, macio e saboroso.'},
+    { id: 'p3', type:'espetinho', title:'Queijo coalho', price:12.00, img:'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/quijocoalho.jpg', desc:' Queijo coalho, servido quente.'},
+    { id: 'p4', type:'espetinho', title:'Coração', price:10.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKfJRsNu438OsjiJDGgbVx9p45wJKgIpZOw&s', desc:'Coração suculento, tempero especial.'},
+    { id: 'p5', type:'espetinho', title:'Linguiça', price:10.00, img:'https://www.vivaespetos.com.br/wp-content/uploads/2021/04/linguica.jpg', desc:'Linguiça artesanal, defumada.'},
+    /* refrigernates */
+
+    { id: 'd1', type:'bebida', title:'Refrigerante', price:6.00, img:'https://andinacocacola.vtexassets.com/arquivos/ids/159186/44.jpg?v=638975402691170000', desc:'Coca Cola Lata 350ml'},
+    { id: 'd2', type:'bebida', title:'Refrigerante', price:6.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXIJnAdSo2hwPABPZwyIPgeUFIBNz7vqbwA&s', desc:'Fanta Laranja 269ml'},
+    { id: 'd3', type:'bebida', title:'Refrigerante', price:6.00, img:'https://www.imigrantesbebidas.com.br/img/bebida/images/products/full/1905-refrigerante-fanta-uva-lata-220ml.jpg?s=61ddfb2e04046dd33a128f69d39c0c77', desc:'Fanta Uva 269ml'},
+    { id: 'd4', type:'bebida', title:'Refrigerante', price:6.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWlL1pdpwRe1a0c-fgQIfVL2sYZmG2brcErQ&s', desc:'Guaraná Lata 269ml'},
+    { id: 'd5', type:'bebida', title:'Refrigerante', price:10.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGplDC1GdOGWeUwzjGsGaIoDPYPkLuV_vC_A&s', desc:'Coca Cola 600ml'},
+
+    /*cervejas*/ 
+        { id: 'd6', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+        { id: 'd7', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+        { id: 'd8', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+        { id: 'd9', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+        { id: 'd10', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+        { id: 'd11', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+        { id: 'd12', type:'bebida', title:'Cerveja Lata', price:7.50, img:'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000', desc:'Cervejas geladas.'},
+    
+        /*pingas*/ 
+        { id: 'd13', type:'bebida', title:'Pinga 50ml', price:5.00, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoMxWTcnMNIr5reLwlCFO_QUo1wGJlzw3Tw&s', desc:'Cachaça artesanal.'}
+];
+
+const sampleCombos = [
+    { id:'c1', title:'Espeto + Refri', price:15.00, desc:'Carne (ou Frango) + Refrigerante 350ml', img:'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/72/e3/ba/jantinha-delivery.jpg?w=900&h=500&s=1'}
+];
+
+const galleryImgs = [
+    'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/carne.jpgs',
+    'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/medfrango.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF_5v6wfwAzAj7gI7dJ0FTZUlVgOfHeX7mfw&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKfJRsNu438OsjiJDGgbVx9p45wJKgIpZOw&s',
+    'https://www.vivaespetos.com.br/wp-content/uploads/2021/04/linguica.jpg',
+
+    /* refrigernates */
+    'https://superrissul.vtexassets.com/arquivos/ids/934006/Refrigerante-CocaCola-Lata-310ml.png?v=638951389750830000',
+
+    /*cervejas*/
+    'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000',
+
+    /*pingas*/
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoMxWTcnMNIr5reLwlCFO_QUo1wGJlzw3Tw&s'
+];
+if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify(sampleProducts));
+if(!localStorage.getItem('combos')) localStorage.setItem('combos', JSON.stringify(sampleCombos));
+if(!localStorage.getItem('gallery')) localStorage.setItem('gallery', JSON.stringify(galleryImgs));
+if(!localStorage.getItem('reviews')) localStorage.setItem('reviews', JSON.stringify({})); // reviews by product id
+if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]));
+/* ===========================
+   Estado e utilitários
+   =========================== */
+let currentSection = 'home';
+let selectedProduct = null;
+let currentStar = 5;
+const whatsNumber = '5561996523509'; // número real do dono do restaurante
+
+function qs(id){ return document.getElementById(id) }
+function money(v){ return 'R$ ' + Number(v).toFixed(2).replace('.',',') }
+
+/* ===========================
+   Render inicial
+   =========================== */
+function renderInitial(){
+    renderQuickGrid();
+    renderProducts();
+    renderDrinks();
+    renderPromos();
+    renderCombos();
+    renderGallery();
+    renderCartCount();
+    // A chamada para renderAdminPanel() foi removida daqui.
+}
+renderInitial();
+
+/* ===========================
+   Seções e Navegação
+   =========================== */
+function showSection(sec){
+    document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+    switch(sec){
+        case 'home': qs('homeSection').classList.remove('hidden'); break;
+        case 'cardapio': qs('cardapioSection').classList.remove('hidden'); break;
+        case 'bebidas': qs('bebidasSection').classList.remove('hidden'); break;
+        case 'promocoes': qs('promocoesSection').classList.remove('hidden'); break;
+        case 'galeria': qs('galeriaSection').classList.remove('hidden'); break;
+        case 'sobre': qs('sobreSection').classList.remove('hidden'); break;
+        case 'eventos': qs('eventosSection').classList.remove('hidden'); break;
+        case 'contato': qs('contatoSection').classList.remove('hidden'); break;
+    }
+    // highlight side nav
+    document.querySelectorAll('nav.side button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('nav.desktop-nav button').forEach(b => b.classList.remove('active'));
+
+    const mapping = {home:'btn-home', cardapio:'btn-cardapio', bebidas:'btn-bebidas', promocoes:'btn-promos', galeria:'btn-galeria', sobre:'btn-sobre', eventos:'btn-eventos', contato:'btn-contato'};
+    const desktopMapping = {home:'d-btn-home', cardapio:'d-btn-cardapio', bebidas:'d-btn-bebidas', promocoes:'d-btn-promos', galeria:'d-btn-galeria', sobre:'d-btn-sobre', eventos:'d-btn-eventos', contato:'d-btn-contato'};
+    
+    if(mapping[sec]) qs(mapping[sec])?.classList.add('active');
+    if(desktopMapping[sec]) qs(desktopMapping[sec])?.classList.add('active');
+    
+    // Fecha o menu lateral após a navegação em mobile
+    if (window.innerWidth <= 1024) closeMenu();
+}
+
+function openMenu(){
+    document.querySelector("nav.side").classList.add("open");
+    document.getElementById("menuBackdrop").style.display="block";
+}
+function closeMenu(){
+    document.querySelector("nav.side").classList.remove("open");
+    document.getElementById("menuBackdrop").style.display="none";
+}
+
+/* ===========================
+   Produtos / Render
+   =========================== */
+function getProducts(){ return JSON.parse(localStorage.getItem('products') || '[]'); }
+function getCombos(){ return JSON.parse(localStorage.getItem('combos') || '[]'); }
+
+function renderQuickGrid(){
+    const grid = qs('quickGrid');
+    grid.innerHTML = '';
+    const prods = getProducts().slice(0,4);
+    prods.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="body"><h3>${p.title}</h3><p class="muted">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><div class="price">${money(p.price)}</div><div><button class="btn" onclick="openProduct('${p.id}')">Ver</button><button class="btn secondary" onclick="addToCart('${p.id}',1)">+Carrinho</button></div></div></div>`;
+        grid.appendChild(div);
+    });
+}
+
+function renderProducts(){
+    const q = qs('search').value.toLowerCase();
+    const prods = getProducts().filter(p => p.type === 'espetinho' && (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
+    const grid = qs('productsGrid'); grid.innerHTML = '';
+    prods.forEach(p => {
+        const div = document.createElement('div'); div.className='card';
+        div.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="body"><h3>${p.title}</h3><p class="muted">${p.desc}</p><div class="actions"><div class="price">${money(p.price)}</div><div style="margin-left:auto"><button class="btn" onclick="openProduct('${p.id}')">Detalhes</button> <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button></div></div></div>`;
+        grid.appendChild(div);
+    });
+}
+
+function renderDrinks(){
+    const q = qs('search').value.toLowerCase();
+    const drinks = getProducts().filter(p => p.type === 'bebida' && (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
+    const grid = qs('drinksGrid'); grid.innerHTML = '';
+    drinks.forEach(p => {
+        const div = document.createElement('div'); div.className='card';
+        div.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="body"><h3>${p.title}</h3><p class="muted">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center"><div class="price">${money(p.price)}</div><div><button class="btn" onclick="openProduct('${p.id}')">Detalhes</button> <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button></div></div></div>`;
+        grid.appendChild(div);
+    });
+}
+
+/* ===========================
+   Produto Modal + Reviews (mantido)
+   =========================== */
+function openProduct(id){
+    const p = getProducts().find(x => x.id===id);
+    if(!p) return alert('Produto não encontrado');
+    selectedProduct = p;
+    qs('modalImg').src = p.img;
+    qs('modalTitle').innerText = p.title;
+    qs('modalDesc').innerText = p.desc;
+    qs('modalPrice').innerText = money(p.price);
+    qs('modalQty').value = 1;
+    renderReviews(p.id);
+    qs('productModalBackdrop').style.display = 'flex';
+    playSizzle();
+}
+
+function closeProductModal(){ qs('productModalBackdrop').style.display = 'none'; selectedProduct = null; }
+
+function playSizzle(){
+    const audio = new Audio('https://actions.google.com/sounds/v1/food/roasting_grill.ogg'); // hosted sfx
+    audio.play().catch(()=>{ /* ignore autoplay block */ });
+}
+
+/* Reviews */
+function renderReviews(pid){
+    const all = JSON.parse(localStorage.getItem('reviews') || '{}');
+    const list = all[pid] || [];
+    const container = qs('reviewsList'); container.innerHTML = '';
+    if(list.length===0) container.innerHTML = '<div class="muted">Seja o primeiro a avaliar!</div>';
+    list.forEach(r => {
+        const d = document.createElement('div');
+        d.style.borderTop='1px dashed rgba(0,0,0,0.06)';
+        d.style.padding='8px 0';
+        d.innerHTML = `<div style="display:flex;justify-content:space-between"><strong>${r.name}</strong><div>${'⭐'.repeat(r.star)}</div></div><div class="muted">${r.text}</div>`;
+        container.appendChild(d);
+    });
+}
+
+function setStar(n){ currentStar = n; Array.from(qs('starInput').children).forEach((c,i)=> c.style.background = i< n ? 'rgba(255,200,0,0.18)' : ''); }
+function submitReview(){
+    if(!selectedProduct) return alert('Abra um produto antes');
+    const name = qs('reviewName').value || 'Anônimo';
+    const text = qs('reviewText').value || '';
+    const star = currentStar || 5;
+    const all = JSON.parse(localStorage.getItem('reviews') || '{}');
+    all[selectedProduct.id] = all[selectedProduct.id] || [];
+    all[selectedProduct.id].unshift({name,text,star,when:Date.now()});
+    localStorage.setItem('reviews', JSON.stringify(all));
+    qs('reviewName').value=''; qs('reviewText').value='';
+    renderReviews(selectedProduct.id);
+    alert('Avaliação enviada — obrigado!');
+}
+
+/* ===========================
+   Carrinho (mantido)
+   =========================== */
+function getCart(){ return JSON.parse(localStorage.getItem('cart') || '[]'); }
+function saveCart(c){ localStorage.setItem('cart', JSON.stringify(c)); renderCartCount(); }
+
+function addToCart(id,qty=1){
+    const p = getProducts().find(x=>x.id===id);
+    if(!p) return;
+    const cart = getCart();
+    const existing = cart.find(i=>i.id===id);
+    if(existing) existing.qty += qty; else cart.push({id: p.id, title:p.title, price:p.price, qty:qty});
+    saveCart(cart);
+    alert(`${p.title} adicionado ao carrinho`);
+}
+
+function addModalToCart(){
+    if(!selectedProduct) return;
+    const q = Number(qs('modalQty').value) || 1;
+    addToCart(selectedProduct.id, q);
+    closeProductModal();
+}
+
+function renderCartCount(){
+    const c = getCart();
+    const totalItems = c.reduce((s,i)=>s+i.qty,0);
+    qs('cartCount').innerText = totalItems;
+}
+
+function openCart(){ qs('cartModal').style.display = 'flex'; renderCart(); }
+function closeCart(){ qs('cartModal').style.display = 'none'; }
+
+function renderCart(){
+    const c = getCart();
+    const cont = qs('cartItems'); cont.innerHTML = '';
+    if(c.length===0){ cont.innerHTML = '<div class="muted">Seu carrinho está vazio</div>'; qs('cartTotal').innerText = money(0); return; }
+    c.forEach(item=>{
+        const row = document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='8px 0'; 
+        row.innerHTML = `<div><strong>${item.title}</strong><div class="muted">Qtd: ${item.qty} x ${money(item.price)}</div></div><div><button class="btn" onclick="changeQty('${item.id}',1)">+</button> <button class="btn secondary" onclick="changeQty('${item.id}',-1)">-</button> <button class="btn secondary" onclick="removeFromCart('${item.id}')">Remover</button></div>`;
+        cont.appendChild(row);
+    });
+    const total = c.reduce((s,i)=>s+i.price*i.qty,0);
+    qs('cartTotal').innerText = money(total);
+}
+
+function changeQty(id,delta){
+    const c = getCart();
+    const item = c.find(i=>i.id===id);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty<=0) {
+        const idx = c.findIndex(i=>i.id===id); c.splice(idx,1);
+    }
+    saveCart(c); renderCart();
+}
+
+function removeFromCart(id){
+    const c = getCart().filter(i=>i.id!==id);
+    saveCart(c); renderCart();
+}
+
+function clearCart(){
+    if(!confirm('Limpar todo o carrinho?')) return;
+    saveCart([]); renderCart();
+}
+
+/* ===========================
+   Checkout via WhatsApp (mantido)
+   =========================== */
+function checkoutWhatsApp(){
+    const c = getCart();
+    if(c.length === 0){
+        alert('Carrinho vazio');
+        return;
+    }
+    const total = c.reduce((s,i)=>s + (i.price * i.qty), 0);
+    const clientName = localStorage.getItem('clientName') || 'Cliente';
+
+    let text = 
+` *NOVO PEDIDO — ESPETINHOS DO MAYOS* 
+ *Cliente:* ${clientName}
+ *Itens do pedido:*`;
+
+    c.forEach(i => {
+        text += `\n• ${i.qty}x ${i.title} — ${money(i.price * i.qty)}`;
+    });
+    text += `
+
+ *Total:* ${money(total)}
+ *Endereço:* 
+ *Observações:* 
+
+ Aguardando confirmação do pedido. Obrigado!`;
+
+    openWhatsApp(text);
+}
+
+
+/* ===========================
+   WhatsApp helper (mantido)
+   =========================== */
+function openWhatsApp(text){
+    const url = `https://wa.me/${whatsNumber}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+}
+
+
+
+/* ===========================
+   Promoções & Combos (mantido)
+   =========================== */
+function renderPromos(){
+    const end = new Date(); end.setHours(23,59,59,999);
+    startPromoTimer(end);
+    const prods = getProducts();
+    qs('promoName').innerText = 'Espeto + Refrigerante';
+    qs('promoBadge')?.classList.remove('hidden');
+    renderCombos();
+}
+
+function startPromoTimer(endDate){
+    function update(){
+        const now = new Date();
+        let diff = Math.max(0, endDate - now);
+        const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+        const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+        const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+        qs('promoTimer').innerText = `${h}:${m}:${s}`;
+        if(diff<=0) clearInterval(timer);
+    }
+    update();
+    const timer = setInterval(update,1000);
+}
+
+function addPromoToCart(){
+    const combo = getCombos()[0];
+    if(!combo) return alert('Nenhum combo');
+    const id = combo.id;
+    const cart = getCart();
+    const existing = cart.find(i=>i.id===id);
+    if(existing) existing.qty += 1; else cart.push({id:combo.id,title:combo.title,price:combo.price,qty:1});
+    saveCart(cart);
+    alert('Promoção adicionada ao carrinho');
+}
+
+function renderCombos(){
+    const grid = qs('combosGrid'); grid.innerHTML = '';
+    const combos = getCombos();
+    combos.forEach(c=>{
+        const card = document.createElement('div'); card.className='card';
+        card.innerHTML = `<img src="${c.img}" alt="${c.title}"><div class="body"><h3>${c.title}</h3><p class="muted">${c.desc}</p><div style="display:flex;justify-content:space-between;align-items:center"><div class="price">${money(c.price)}</div><div><button class="btn" onclick="addCombo('${c.id}')">Adicionar</button></div></div></div>`;
+        grid.appendChild(card);
+    });
+}
+
+function addCombo(id){
+    const c = getCombos().find(x=>x.id===id);
+    if(!c) return;
+    const cart = getCart();
+    const existing = cart.find(i=>i.id===id);
+    if(existing) existing.qty += 1; else cart.push({id:c.id,title:c.title,price:c.price,qty:1});
+    saveCart(cart);
+}
+
+/* ===========================
+   GALERIA (mantido)
+   =========================== */
+function renderGallery(){
+    const imgs = JSON.parse(localStorage.getItem('gallery') || '[]');
+    const container = qs('gallery'); container.innerHTML = '';
+    imgs.forEach(src=>{
+        const img = document.createElement('img'); img.src=src;
+        img.onclick = ()=> openLightbox(src);
+        container.appendChild(img);
+    });
+}
+function openLightbox(src){
+    const lb = document.createElement('div');
+    lb.style.position='fixed'; lb.style.inset=0; lb.style.background='rgba(0,0,0,0.8)'; lb.style.display='flex'; lb.style.alignItems='center'; lb.style.justifyContent='center'; lb.style.zIndex=120;
+    const img = document.createElement('img'); img.src=src; img.style.maxWidth='90%'; img.style.maxHeight='90%'; img.style.borderRadius='12px';
+    lb.appendChild(img);
+    lb.onclick = ()=> lb.remove();
+    document.body.appendChild(lb);
+}
+
+/* ===========================
+   Contato form (abre WhatsApp) (mantido)
+   =========================== */
+function sendContact(e){
+    e.preventDefault();
+
+    const name = qs('cName').value || 'Cliente';
+    const phone = qs('cPhone').value || '';
+    const msg = qs('cMsg').value || '';
+
+    // Salva nome do cliente
+    localStorage.setItem('clientName', name);
+
+    const text = `Olá! Meu nome é *${name}*.%0A📞 Telefone: ${phone}%0A%0A${msg}`;
+    openWhatsApp(text);
+}
+
+/* ===========================
+   QR Code PIX (gera via Google Chart API) (mantido)
+   =========================== */
+function generateQR(){
+    const v = Number(qs('pixValue').value || 0);
+    if(v<=0) return alert('Informe um valor válido');
+    const pixPayload = `Copia e Cola PIX - Espetinhos do Chef - Valor R$${v.toFixed(2)}`;
+    const url = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(pixPayload)}&chs=200x200&chld=L|1`;
+    qs('qrcode').innerHTML = `<img src="${url}" alt="QR Code">`;
+}
+
+/* ===========================
+   Admin (simples) (mantido)
+   =========================== */
+function openAdmin(){
+    const panel = qs('adminPanel');
+    // Esta função alterna entre 'none' e 'block' (esconde/mostra)
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function unlockAdmin(){
+    const pass = qs('adminPass').value;
+    if(pass === 'admin123'){ openAdminModal(); } else alert('Senha incorreta. DICA: "admin ..."');
+}
+
+function openAdminModal(){
+    const modalRoot = document.createElement('div');
+    modalRoot.style.position='fixed'; modalRoot.style.inset=0; modalRoot.style.background='rgba(0,0,0,0.45)'; modalRoot.style.display='flex'; modalRoot.style.alignItems='center'; modalRoot.style.justifyContent='center'; modalRoot.style.zIndex=200;
+    const box = document.createElement('div'); box.style.background = getComputedStyle(document.body).getPropertyValue('--card'); box.style.padding='18px'; box.style.borderRadius='12px'; box.style.width='600px'; box.style.maxHeight='90vh'; box.style.overflow='auto';
+    box.innerHTML = `<h3>Painel Admin - Adicionar Produto</h3>
+        <label>Título</label><input id="adm_title" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
+        <label>Tipo (espetinho|bebida)</label><input id="adm_type" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" value="espetinho">
+        <label>Preço</label><input id="adm_price" type="number" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
+        <label>Imagem URL</label><input id="adm_img" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
+        <label>Descrição</label><textarea id="adm_desc" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px"></textarea>
+        <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="admAdd">Adicionar</button><button class="btn secondary" id="admClose">Fechar</button></div>
+        <hr><h4>Produtos Existentes</h4><div id="admList"></div>
+    `;
+    modalRoot.appendChild(box);
+    document.body.appendChild(modalRoot);
+    qs('admClose').onclick = ()=> modalRoot.remove();
+    qs('admAdd').onclick = ()=> {
+        const title = qs('adm_title').value.trim(); const type = qs('adm_type').value.trim(); const price = Number(qs('adm_price').value); const img = qs('adm_img').value.trim(); const desc = qs('adm_desc').value.trim();
+        if(!title || !type || !price) return alert('Preencha título, tipo e preço');
+        const prods = getProducts();
+        const id = 'p' + Math.floor(Math.random()*100000);
+        prods.push({id,title,type,price,img: img || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=60',desc});
+        localStorage.setItem('products', JSON.stringify(prods));
+        alert('Produto adicionado');
+        renderProducts(); renderDrinks(); renderQuickGrid();
+        renderAdminList();
+    }
+    // list existing
+    function renderAdminList(){
+        const list = getProducts();
+        qs('admList').innerHTML = '';
+        list.forEach(p=>{
+            const row = document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='6px 0';
+            row.innerHTML = `<div><strong>${p.title}</strong> <span class="muted">(${p.type})</span><div class="muted">${money(p.price)}</div></div><div><button class="btn secondary" onclick="deleteProduct('${p.id}', this)">Remover</button></div>`;
+            qs('admList').appendChild(row);
+        });
+    }
+    renderAdminList();
+}
+
+/* delete product (exposed globally) */
+function deleteProduct(id, el){
+    if(!confirm('Remover produto?')) return;
+    let prods = getProducts();
+    prods = prods.filter(p=>p.id!==id);
+    localStorage.setItem('products', JSON.stringify(prods));
+    renderProducts(); renderDrinks(); renderQuickGrid();
+    // refresh admin list if present
+    const admList = document.getElementById('admList'); if(admList) admList.remove();
+    alert('Removido');
+}
+
+/* ===========================
+   Theme toggle (dark mode) (mantido)
+   =========================== */
+function toggleTheme(){
+    const el = document.body;
+    const cur = el.getAttribute('data-theme');
+    el.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+}
+
+/* ===========================
+   Search input handler to re-render (mantido)
+   =========================== */
+qs('search').addEventListener('input', ()=>{ renderProducts(); renderDrinks(); });
+
+/* ===========================
+   Simple startup: show cardapio on load small screens (mantido)
+   =========================== */
+if(window.innerWidth < 880) showSection('cardapio'); else showSection('home');
+
+/* Expose deleteProduct to window for admin buttons created in modal */
+window.deleteProduct = deleteProduct;
+
+/* Initialize promo badge display */
+qs('promoBadge').classList.remove('hidden');
+
+/* Render homepage quick products and all grids periodically if localStorage changes (simple) */
+setInterval(()=>{ renderProducts(); renderDrinks(); renderQuickGrid(); renderGallery(); renderCartCount(); }, 4000);
+
+// Certifica que as funções openCart e closeCart estão globais, caso necessário.
+window.openCart = openCart;
+window.closeCart = closeCart;
+</script>
+<div id="menuBackdrop" onclick="closeMenu()" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; z-index:150;"></div>
+</body>
+</html>
