@@ -328,7 +328,7 @@
                     <button class="btn secondary" onclick="showSection('promocoes')">Ver Promoções</button>
                 </div>
                 <div style="margin-top:14px">
-                    <span class="muted">Endereço:</span> Brasília - DF • <span class="muted">Horario:</span> 7:00 - 19:00
+                    <span class="muted">Endereço:</span> Brasília - DF • <span class="muted">Horario:</span> 7:00 - 18:00
                 </div>
             </div>
             <div style="width:360px">                                                                                   
@@ -379,12 +379,12 @@
        <h2>ℹ️ Sobre Nós</h2>
         <div class="cols">
             <div>
-                <p>Nascemos em 2025, somos apaixonados por churrasco e acreditamos que bons momentos começam com boa comida, nossa empresa nasceu com o propósito de levar espetinhos saborosos, bem preparados e feitos com ingredientes selecionados, sempre prezando pela qualidade, higiene e atendimento diferenciado.
-Cada espetinho é preparado com cuidado, desde a escolha das carnes até o ponto ideal na brasa, garantindo sabor, suculência e aquele gostinho que conquista no primeiro pedaço. Mais do que vender espetinhos, entregamos experiências, encontros e momentos especiais.</p>
+                <p>O Sip & Snack nasceu focados em agilidade e variedade, oferecemos uma curadoria exclusiva de itens práticos para o seu dia a dia,
+Trabalhamos com os pilares da praticidade e conveniência, garantindo que você encontre o que precisa em poucos segundos. De bebidas geladas a snacks que salvam o seu dia, estamos aqui para facilitar a sua rotina com eficiência e um atendimento dinâmico.</p>
                 <ul>
-                    <li>Missão:Oferecer espetinhos de alta qualidade, com sabor marcante e preparo responsável, proporcionando satisfação, confiança e alegria aos nossos clientes em cada atendimento.</li>
-                    <li>Visão:Ser reconhecida como referência em espetinhos na região, destacando-se pela qualidade dos produtos, excelência no atendimento e compromisso com a satisfação do cliente.</li>
-                    <li>Valores: Qualidade, Compromisso com o cliente, Higiene, segurança alimentar, respeito e sabor</li>
+                    <li>Missão:Oferecer produtos de alta qualidade, com sabor marcante, proporcionando satisfação, confiança e alegria aos nossos clientes em cada atendimento.</li>
+                    <li>Visão:Destacando-se pela qualidade dos produtos, excelência no atendimento e compromisso com a satisfação do cliente.</li>
+                    <li>Valores: Qualidade, Compromisso e respeito com o cliente</li>
                 </ul>
             </div>
              </div>
@@ -486,8 +486,8 @@ Cada espetinho é preparado com cuidado, desde a escolha das carnes até o ponto
 <footer>
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div>
-            <strong>Espetinhos do Mayos</strong><br>
-            St. Sul Q 13/15 - Gama Brasília - DF • Atendimento 17h–23h<br>
+            <strong>Sip & Snack- Conveniência</strong><br>
+            Brasília - DF • Atendimento 7h–18h<br>
             <div style="margin-top:8px">
                 <button class="btn" onclick="openWhatsApp('Olá, gostaria de informações')">WhatsApp</button>
                 <button class="btn secondary" onclick="showSection('contato')">Contato</button>
@@ -567,7 +567,7 @@ if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]
 let currentSection = 'home';
 let selectedProduct = null;
 let currentStar = 5;
-const whatsNumber = '5561996523509'; // número real do dono do restaurante
+const whatsNumber = '5561998710947'; // número real do dono do restaurante
 
 function qs(id){ return document.getElementById(id) }
 function money(v){ return 'R$ ' + Number(v).toFixed(2).replace('.',',') }
@@ -798,7 +798,7 @@ function checkoutWhatsApp(){
     const clientName = localStorage.getItem('clientName') || 'Cliente';
 
     let text = 
-` *NOVO PEDIDO — ESPETINHOS DO MAYOS* 
+` *NOVO PEDIDO — Sip & Snack- Conveniência* 
  *Cliente:* ${clientName}
  *Itens do pedido:*`;
 
@@ -808,7 +808,7 @@ function checkoutWhatsApp(){
     text += `
 
  *Total:* ${money(total)}
- *Endereço:* 
+ *Digite sua sala para entrega:* 
  *Observações:* 
 
  Aguardando confirmação do pedido. Obrigado!`;
@@ -927,7 +927,7 @@ function sendContact(e){
 function generateQR(){
     const v = Number(qs('pixValue').value || 0);
     if(v<=0) return alert('Informe um valor válido');
-    const pixPayload = `Copia e Cola PIX - Espetinhos do Chef - Valor R$${v.toFixed(2)}`;
+    const pixPayload = `Copia e Cola PIX - Sip & Snack- Conveniência - Valor R$${v.toFixed(2)}`;
     const url = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(pixPayload)}&chs=200x200&chld=L|1`;
     qs('qrcode').innerHTML = `<img src="${url}" alt="QR Code">`;
 }
