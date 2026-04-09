@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title> Sip & Snack: — Loja Online</title>
@@ -299,12 +303,12 @@
     </div>
 </header>
 
-<nav class="side" id="sideNav">
+<nav class="side" id="sideNav">   
     <span onclick="closeMenu()" style="position:absolute; top:20px; right:20px; font-size:30px; cursor:pointer;">×</span> 
     <button onclick="showSection('home')" id="btn-home" class="active">🏠 Home</button>
     <button onclick="showSection('cardapio')" id="btn-cardapio">🍢 Doces e variados</button>
-    <button onclick="showSection('bebidas')" id="btn-bebidas">🥤 Bebidas</button>
-    <button onclick="showSection('refrigerantes')" id="btn-refrigerantes"> Energéticos</button>
+    <button onclick="showSection('bebidas')" id="btn-bebidas">⚡ Energéticos</button>
+    <button onclick="showSection('refrigerantes')" id="btn-refrigerantes">🥤 Refrigerantes</button>
     <button onclick="showSection('sobre')" id="btn-sobre">ℹ️ Sobre</button>
     <button onclick="showSection('contato')" id="btn-contato">📞 Contato</button>
 </nav>
@@ -529,10 +533,10 @@ const sampleProducts = [
     { id: 'd10', type:'bebida', title:'Monster Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
  
                         /*refrigente */ 
-       { id: 'd11', type:'refrigerante', title:'Sprite Lata Zero Áçucar', price:5.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Áçucar 350ml'},
-       { id: 'd10', type:'refrigerante', title:'Sprite Lata', price:5.00, img:'sprite.jpg', desc:' Sprite Lata 310ml.'}, 
-       { id: 'd7', type:'refrigerante', title:'Coca Cola Zero Açúcar', price:5.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero 310ml'},
-       { id: 'd8', type:'refrigerante', title:'Coca Cola', price:5.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 310ml'},
+       { id: 'd8', type:'refrigerante', title:'Sprite Lata Zero Áçucar', price:5.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Áçucar 350ml'},
+       { id: 'd7', type:'refrigerante', title:'Sprite Lata', price:5.00, img:'sprite.jpg', desc:' Sprite Lata 310ml.'}, 
+       { id: 'd10', type:'refrigerante', title:'Coca Cola Zero Açúcar', price:5.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero 310ml'},
+       { id: 'd11', type:'refrigerante', title:'Coca Cola', price:5.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 310ml'},
        { id: 'd9', type:'refrigerante', title:'Fanta Uva', price:5.00, img:'R.jpg', desc:'Fanta Uva 310ml'},   
        {id: 'd12', type:'refrigerante', title:'Fanta Laranja', price:5.00, img:'laranja fanta.jpg', desc:'Fanta Laranja 310ml'},
                
@@ -891,6 +895,12 @@ function openWhatsApp(text){
     window.open(url, '_blank');
 }
 
+const VERSION = "1.1";        //status de atualização do sistema, caso queira forçar limpeza de cache e dados antigos, basta mudar esta string para algo diferente (ex: "1.2")
+
+if(localStorage.getItem("version") !== VERSION){
+    localStorage.clear();
+    localStorage.setItem("version", VERSION);
+}
 
 
 /* ===========================
