@@ -11,7 +11,7 @@
 
     /* VARIÁVEIS DE TEMA */
     :root{
-        --bg:#f6f6f6; --card:#fff; --accent:#316cf5; --accent-2:#fca74d; --text:#222;
+        --bg:#f6f6f6; --card:#fff; --accent:#316cf5; --accent-2:#f9b56e; --text:#222;
         --glass: rgba(255,255,255,0.6);
         --header-height: 66px; /* Altura do cabeçalho fixo */
     }
@@ -280,8 +280,8 @@
     <nav class="desktop-nav" id="desktopNav">
         <button onclick="showSection('home')" id="d-btn-home" class="active">🏠 Home</button>
         <button onclick="showSection('cardapio')" id="d-btn-cardapio">🍢 Doces e variados</button>
-        <button onclick="showSection('bebidas')" id="d-btn-bebidas">🥤 Bebidas</button>
-        <button onclick="showSection('promocoes')" id="d-btn-promos">💥 Promoções</button>
+        <button onclick="showSection('bebidas')" id="d-btn-bebidas">⚡ Energéticos </button>
+      <button onclick="showSection('refrigerantes')" id="d-btn-refrigerantes">🥤 Refrigerantes</button>
         <button onclick="showSection('sobre')" id="d-btn-sobre">ℹ️ Sobre</button>
         <button onclick="showSection('contato')" id="d-btn-contato">📞 Contato</button>
     </nav>
@@ -304,7 +304,7 @@
     <button onclick="showSection('home')" id="btn-home" class="active">🏠 Home</button>
     <button onclick="showSection('cardapio')" id="btn-cardapio">🍢 Doces e variados</button>
     <button onclick="showSection('bebidas')" id="btn-bebidas">🥤 Bebidas</button>
-    <button onclick="showSection('promocoes')" id="btn-promos">💥 Promoções</button>
+    <button onclick="showSection('refrigerantes')" id="btn-refrigerantes"> Energéticos</button>
     <button onclick="showSection('sobre')" id="btn-sobre">ℹ️ Sobre</button>
     <button onclick="showSection('contato')" id="btn-contato">📞 Contato</button>
 </nav>
@@ -348,26 +348,14 @@
     </section>
 
     <section id="bebidasSection" class="hidden">
-        <h2>🥤 Bebidas</h2>
+        <h2>⚡Energéticos</h2>
         <div class="grid" id="drinksGrid" style="margin-top:12px"></div>
     </section>
 
-    <section id="promocoesSection" class="hidden">
-        <h2>💥 Promoções</h2>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-            <div class="card" style="padding:14px;min-width:240px">
-                <div style="display:flex;justify-content:space-between;align-items:center">
-                    <div>
-                        <div class="muted">Promoção do Dia</div>
-                        <div id="promoTitle" style="font-size:18px;font-weight:800;margin-top:6px"> Monster</div>
-                        <div class="muted" style="margin-top:6px">Preço especial por tempo limitado</div>
-                    </div>
-                    <div class="center">
-                        <div class="countdown" id="promoTimer">00:00:00</div>
-                        <button class="btn" onclick="addPromoToCart()">Adicionar Promo</button>
-                    </div>
-                </div>
-            </div>
+  <section id="refrigerantesSection" class="hidden">
+    <h2>🥤 Refrigerantes</h2>
+    <div class="grid" id="refrigerantesGrid" style="margin-top:12px"></div>
+</section>
 
             <div style="flex:1">
                 <p class="muted">Combos especiais, descontos para retiradas.</p>
@@ -521,31 +509,29 @@ const sampleProducts = [
     { id: 'p2',  type:'bebida', title:'Monster Tradicional', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
     { id: 'p3', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
     { id: 'p4', type:'bebida', title:' Monster Energy Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'},
-    { id: 'p5',  type:'bebida', title:'Água com gás', price:4.00, img:'com gás.jpg', desc:'Água com gás 500ml'},
+    { id: 'p5',  type:'Refrigentante', title:'Água com gás', price:4.00, img:'com gás.jpg', desc:'Água com gás 500ml'},
 
     /* COMIDA */
-    { id: 'p22', type:'comida', title:'EM BREVE !!!', price:0.00, img:'      ', desc:'EM BREVE !!!'},
-    { id: 'p23', type:'comida', title:'EM BREVE !!!', price:0.00, img:'     ', desc:'  EM BREVE !!!'},
-    { id: 'p24', type:'comida', title:'EM BREVE !!!', price:0.00, img:'      ', desc:'  EM BREVE !!!'},
-    { id: 'p25', type:'comida', title:'EM BREVE !!!', price:0.00, img:'    ', desc:'EM BREVE !!!'},
-    { id: 'p26', type:'comida', title:'EM BREVE !!!', price:0.00, img:'   ', desc:'EM BREVE !!!'},
+    { id: 'p22', type:'comida', title:'EM BREVE !!!', price:0.00, img:'SNICKERES 1.jpg', desc:'Chocolate barrinha Snickers 45g'},
+    { id: 'p23', type:'comida', title:'EM BREVE !!!', price:0.00, img:'KITKAT.jpg', desc:'Chocolate Kitkat 4 Fingers Ao Leite 41,5g'},
+    { id: 'p24', type:'comida', title:'EM BREVE !!!', price:0.00, img:' M&M.jpg', desc:'Chocolate M&amp;m Ao Leite 40g'},
+    { id: 'p25', type:'comida', title:'EM BREVE !!!', price:0.00, img:'CHOKITO.jpg', desc:'Chocolate Chokito Nestlé 32g'},
+    { id: 'p26', type:'comida', title:'EM BREVE !!!', price:0.00, img:'LOOK SABORES.jpg', desc:'Caixa De Biscoito Look Sabores 55g'},
 
-    /* Monster */
-
-   /*    INATIVO POR ENQUANTO  { id: 'd1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'}, */
+                 /* Monster */
     { id: 'd5', type:'bebida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
     { id: 'd3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-   // { id: 'd4', type:'bebida', title:'Monster Tradicional', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-   /*     INATIVO POR ENQUANTO     { id: 'd2', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'}, */
     { id: 'd6', type:'bebida', title:'Monster Energy Absolutely Zero', price:12.00, img:'absoluty.jpg', desc:'Monster Energy Absolutely Zero 473ml'},
-    
-    /*refrigente */ 
-        { id: 'd11', type:'bebida', title:'Monster Tradicional Zero', price:12.00, img:'zeroooooooooo.jpg', desc:'Monster Tradicional Zero 473ml'},
-       /* INATIVO POR ENQUANTO  { id: 'd12', type:'bebida', title:' Monster Energy Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'}, */
-        { id: 'd10', type:'bebida', title:'Monster Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
-        { id: 'd7', type:'bebida', title:'Coca Cola Zero Açúcar', price:5.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero Açúcar350ml'},
-        { id: 'd8', type:'bebida', title:'Coca Cola', price:5.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 350ml'},
-       /* { id: 'd9', type:'bebida', title:'Água com gás', price:3.50, img:'com gás.jpg', desc:'Água com gás 500ml'},        INATIVO POR ENQUANTO */
+    { id: 'd11', type:'bebida', title:'Monster Tradicional Zero', price:12.00, img:'zeroooooooooo.jpg', desc:'Monster Tradicional Zero 473ml'},
+    { id: 'd10', type:'bebida', title:'Monster Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
+ 
+                        /*refrigente */ 
+       { id: 'd11', type:'refrigerante', title:'Sprite Lata Zero Áçucar', price:5.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Áçucar 350ml'},
+       { id: 'd10', type:'refrigerante', title:'Sprite Lata', price:5.00, img:'sprite.jpg', desc:' Sprite Lata 310ml.'}, 
+       { id: 'd7', type:'refrigerante', title:'Coca Cola Zero Açúcar', price:5.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero 310ml'},
+       { id: 'd8', type:'refrigerante', title:'Coca Cola', price:5.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 310ml'},
+       { id: 'd9', type:'refrigerante', title:'Fanta Uva', price:5.00, img:'R.jpg', desc:'Fanta Uva 310ml'},   
+       {id: 'd12', type:'refrigerante', title:'Fanta Laranja', price:5.00, img:'laranja fanta.jpg', desc:'Fanta Laranja 310ml'},
                
 ];
 
@@ -594,6 +580,7 @@ function money(v){ return 'R$ ' + Number(v).toFixed(2).replace('.',',') }
 function renderInitial(){
     renderQuickGrid();
     renderProducts();
+    renderRefrigerantes(); 
     renderDrinks();
     renderPromos();
     renderCombos();
@@ -612,7 +599,7 @@ function showSection(sec){
         case 'home': qs('homeSection').classList.remove('hidden'); break;
         case 'cardapio': qs('cardapioSection').classList.remove('hidden'); break;
         case 'bebidas': qs('bebidasSection').classList.remove('hidden'); break;
-        case 'promocoes': qs('promocoesSection').classList.remove('hidden'); break;
+        case 'refrigerantes': qs('refrigerantesSection').classList.remove('hidden'); break;
         case 'galeria': qs('galeriaSection').classList.remove('hidden'); break;
         case 'sobre': qs('sobreSection').classList.remove('hidden'); break;
         case 'eventos': qs('eventosSection').classList.remove('hidden'); break;
@@ -622,8 +609,8 @@ function showSection(sec){
     document.querySelectorAll('nav.side button').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('nav.desktop-nav button').forEach(b => b.classList.remove('active'));
 
-    const mapping = {home:'btn-home', cardapio:'btn-cardapio', bebidas:'btn-bebidas', promocoes:'btn-promos', galeria:'btn-galeria', sobre:'btn-sobre', eventos:'btn-eventos', contato:'btn-contato'};
-    const desktopMapping = {home:'d-btn-home', cardapio:'d-btn-cardapio', bebidas:'d-btn-bebidas', promocoes:'d-btn-promos', galeria:'d-btn-galeria', sobre:'d-btn-sobre', eventos:'d-btn-eventos', contato:'d-btn-contato'};
+   const mapping = {home:'btn-home', cardapio:'btn-cardapio', bebidas:'btn-bebidas', refrigerantes:'btn-refrigerantes', sobre:'btn-sobre', contato:'btn-contato'};
+    const desktopMapping = {home:'d-btn-home', cardapio:'d-btn-cardapio', bebidas:'d-btn-bebidas', refrigerantes:'d-btn-refrigerantes', sobre:'d-btn-sobre', contato:'d-btn-contato'};
     
     if(mapping[sec]) qs(mapping[sec])?.classList.add('active');
     if(desktopMapping[sec]) qs(desktopMapping[sec])?.classList.add('active');
@@ -703,6 +690,43 @@ function renderDrinks(){
         grid.appendChild(div);
     });
 }
+
+    function renderRefrigerantes(){
+    const q = qs('search').value.toLowerCase();
+    const refris = getProducts().filter(p => 
+        p.type === 'refrigerante' &&
+        (p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))
+    );
+
+    const grid = qs('refrigerantesGrid');
+    grid.innerHTML = '';
+
+    if(refris.length === 0){
+        grid.innerHTML = '<p class="muted">Nenhum refrigerante encontrado...</p>';
+        return;
+    }
+
+    refris.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+            <img src="${p.img}" alt="${p.title}">
+            <div class="body">
+                <h3>${p.title}</h3>
+                <p class="muted">${p.desc}</p>
+                <div class="actions">
+                    <div class="price">${money(p.price)}</div>
+                    <div style="margin-left:auto">
+                        <button class="btn" onclick="openProduct('${p.id}')">Detalhes</button>
+                        <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        grid.appendChild(div);
+    });
+}
+
 
 /* ===========================
    Produto Modal + Reviews (mantido)
@@ -1059,7 +1083,11 @@ function toggleTheme(){
 /* ===========================
    Search input handler to re-render (mantido)
    =========================== */
-qs('search').addEventListener('input', ()=>{ renderProducts(); renderDrinks(); });
+qs('search').addEventListener('input', ()=>{
+    renderProducts();
+    renderDrinks();
+    renderRefrigerantes();
+});
 
 /* ===========================
    Simple startup: show cardapio on load small screens (mantido)
