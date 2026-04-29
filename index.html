@@ -21,7 +21,7 @@
     }
     [data-theme="dark"]{
         --bg:#c3c2c2; --card:#c6c1c1; --accent:#4b2f11; --accent-2:#f63409; --text:#121212; --glass: rgba(242, 240, 240, 0.96);
-    }                                       /* letra*/                                   /* número preço*/
+    }                                       /* letra*/                                   /* número preço */
 
     /* GERAL */
     *{box-sizing:border-box}
@@ -541,7 +541,26 @@ const sampleProducts = [
                
 ];
 
+const sampleCombos = [
+    { id:'c1', title:'Em breve !!!!', price:15.00, desc:'', img:' '}
+];
 
+const galleryImgs = [
+    'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/carne.jpgs',
+    'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/medfrango.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF_5v6wfwAzAj7gI7dJ0FTZUlVgOfHeX7mfw&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKfJRsNu438OsjiJDGgbVx9p45wJKgIpZOw&s',
+    'https://www.vivaespetos.com.br/wp-content/uploads/2021/04/linguica.jpg',
+
+    /* refrigernates */
+    'https://superrissul.vtexassets.com/arquivos/ids/934006/Refrigerante-CocaCola-Lata-310ml.png?v=638951389750830000',
+
+    /*cervejas*/
+    'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000',
+
+    /*pingas*/
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoMxWTcnMNIr5reLwlCFO_QUo1wGJlzw3Tw&s'
+];
 if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify(sampleProducts));
 if(!localStorage.getItem('combos')) localStorage.setItem('combos', JSON.stringify(sampleCombos));
 if(!localStorage.getItem('gallery')) localStorage.setItem('gallery', JSON.stringify(galleryImgs));
@@ -875,7 +894,7 @@ function openWhatsApp(text){
     window.open(url, '_blank');
 }
 
-const VERSION = "1.2";        //status de atualização do sistema, caso queira forçar limpeza de cache e dados antigos, basta mudar esta string para algo diferente (ex: "1.2")
+const VERSION = "1.1";        //status de atualização do sistema, caso queira forçar limpeza de cache e dados antigos, basta mudar esta string para algo diferente (ex: "1.2")
 
 if(localStorage.getItem("version") !== VERSION){
     localStorage.clear();
