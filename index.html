@@ -15,13 +15,13 @@
 
     /* VARIÁVEIS DE TEMA */
     :root{
-        --bg:#f6f6f6; --card:#fff; --accent:#316cf5; --accent-2:#f9b56e; --text:#222;
+        --bg:#f6f6f6; --card:#fff; --accent:#f63409; --accent-2:#4b2f11; --text:#222;
         --glass: rgba(255,255,255,0.6);
         --header-height: 66px; /* Altura do cabeçalho fixo */
     }
     [data-theme="dark"]{
-        --bg:#121212; --card:#1c1c1c; --accent:#FF6B6B; --accent-2:#FF9F1C; --text:#EEE; --glass: rgba(0,0,0,0.45);
-    }
+        --bg:#c3c2c2; --card:#c6c1c1; --accent:#4b2f11; --accent-2:#f63409; --text:#121212; --glass: rgba(242, 240, 240, 0.96);
+    }                                       /* letra*/                                   /* número preço*/
 
     /* GERAL */
     *{box-sizing:border-box}
@@ -243,7 +243,7 @@
 }
 /* ... */
 
-/* wpp */ 
+       /* wpp */ 
 #whatsappFloat{
     position: fixed;
     bottom: 22px;
@@ -361,14 +361,6 @@
     <div class="grid" id="refrigerantesGrid" style="margin-top:12px"></div>
 </section>
 
-            <div style="flex:1">
-                <p class="muted">Combos especiais, descontos para retiradas.</p>
-            </div>
-        </div>
-        <h3 style="margin-top:18px">Combos</h3>
-        <div class="grid" id="combosGrid" style="margin-top:12px"></div>
-    </section>
-
     <section id="sobreSection" class="hidden">
        <h2>ℹ️ Sobre Nós</h2>
         <div class="cols">
@@ -478,8 +470,6 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 
 </main>
 
-
-
 <footer>
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div>
@@ -509,10 +499,10 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 const sampleProducts = [
 
     /*  HOME INICIAL */
-    { id: 'p1', type:'bebida', title:'Monster Mongo Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'p2',  type:'bebida', title:'Monster Tradicional', price:12.00, img:'tradicional.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'p3', type:'bebida', title:'Monster Branco Zero', price:12.00, img:'zero branco.jpg ', desc:'Monster Branco Zero 473ml'},
-    { id: 'p4', type:'bebida', title:' Monster Energy Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'},
+    { id: 'p1', type:'bebida', title:'Monster Energy Juice Mango Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
+    { id: 'p2',  type:'bebida', title:'Monster Energy Juice Tradicional', price:12.00, img:'tradicionalaa.jpg ', desc:'Monster Tradiconal 473ml'},
+    { id: 'p3', type:'bebida', title:'Monster Energy Ultra White', price:12.00, img:'zero branco.jpg ', desc:'Monster Energy Ultra White 473ml'},
+    { id: 'p4', type:'bebida', title:' Monster Energy Juice Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'},
     { id: 'p5',  type:'Refrigentante', title:'Água com gás', price:4.00, img:'com gás.jpg', desc:'Água com gás 500ml'},
 
     /* COMIDA */
@@ -521,47 +511,37 @@ const sampleProducts = [
     { id: 'p24', type:'comida', title:'EM BREVE !!!', price:0.00, img:' M&M.jpg', desc:'Chocolate M&amp;m Ao Leite 40g'},
     { id: 'p25', type:'comida', title:'EM BREVE !!!', price:0.00, img:'CHOKITO.jpg', desc:'Chocolate Chokito Nestlé 32g'},
     { id: 'p26', type:'comida', title:'EM BREVE !!!', price:0.00, img:'LOOK SABORES.jpg', desc:'Caixa De Biscoito Look Sabores 55g'},
-    {id: 'p27', type:'comida', title:'EM BREVE !!!', price:0.00, img:'prestigio.png', desc:'Chocolate Prestígio Nestlé 33g'},
+    { id: 'p27', type:'comida', title:'EM BREVE !!!', price:0.00, img:'prestigio.png', desc:'Chocolate Prestígio Nestlé 33g'},
     { id: 'p28', type:'comida', title:'EM BREVE !!!', price:0.00, img:'bis extra.jpg' , desc:'Lacta Chocolate ao Leite Bis Xtra 45g'},
-    {id: 'p29', type:'comida', title:'EM BREVE !!!', price:0.00, img:'1116041-1200-auto.webp', desc:'Lacta Chocolate Bis Xtra branco 45g'},
+    { id: 'p29', type:'comida', title:'EM BREVE !!!', price:0.00, img:'1116041-1200-auto.webp', desc:'Lacta Chocolate Bis Xtra branco 45g'},
+
+
 
                  /* Monster */
-    { id: 'd5', type:'bebida', title:'Monster Laranja', price:12.00, img:'laranja.jpg ', desc:'Monster Mongo Laranja 473ml'},
-    { id: 'd3', type:'bebida', title:'Monster Mongo Loco Zero', price:12.00, img:'mango loco zero.jpg', desc:'Monster Mongo Loco Zero áçucar 473ml'},
-    { id: 'd6', type:'bebida', title:'Monster Energy Absolutely Zero', price:12.00, img:'absoluty.jpg', desc:'Monster Energy Absolutely Zero 473ml'},
-    { id: 'd11', type:'bebida', title:'Monster Tradicional Zero', price:12.00, img:'zeroooooooooo.jpg', desc:'Monster Tradicional Zero 473ml'},
-    { id: 'd10', type:'bebida', title:'Monster Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
- 
-                        /*refrigente */ 
-       { id: 'd8', type:'refrigerante', title:'Sprite Lata Zero Áçucar', price:5.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Áçucar 350ml'},
-       { id: 'd7', type:'refrigerante', title:'Sprite Lata', price:5.00, img:'sprite.jpg', desc:' Sprite Lata 310ml.'}, 
-       { id: 'd10', type:'refrigerante', title:'Coca Cola Zero Açúcar', price:5.00, img:'coca cola zero.jpg', desc:'Coca Cola Zero 310ml'},
-       { id: 'd11', type:'refrigerante', title:'Coca Cola', price:5.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca Cola 310ml'},
-       { id: 'd9', type:'refrigerante', title:'Fanta Uva', price:5.00, img:'R.jpg', desc:'Fanta Uva 310ml'},   
-       {id: 'd12', type:'refrigerante', title:'Fanta Laranja', price:5.00, img:'laranja fanta.jpg', desc:'Fanta Laranja 310ml'},
+    { id: 'b1', type:'bebida', title:'Energy Juice Khaotic', price:12.00, img:'laranja.jpg ', desc:'Sobre o Sabor: Suco de laranja com energético. 473ml'},
+    { id: 'b2', type:'bebida', title:'Ultra Fiesta Mango', price:12.00, img:'mango loco zero.jpg', desc:'Monster Sabor:: tropical de manga 473ml'},
+    { id: 'b3', type:'bebida', title:'Energy Absolutely Zero', price:12.00, img:'ABSOLUTYY.jpg', desc:'Sobre o Sabor: Monster Energy com um leve toque cítrico'},
+    { id: 'b4', type:'bebida', title:'Tradicional Zero', price:12.00, img:'zeroooooooooo.jpg', desc:'Monster Tradicional Zero 473ml'},
+    { id: 'b5', type:'bebida', title:'Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
+    { id: 'b6', type:'bebida', title:' VR|46 Valentino Rossi', price:12.00, img:'docter.jpg', desc:'Sobre o SaborGrape Fruit "Toranja" 473ml'},
+    { id: 'b7', type:'bebida', title:'Juice Pacific Punch', price:12.00, img:'juice pacific punch.png', desc:'Sabor tropical que é leve, suave e o toque perfeito de doce.'},
+    {id: 'b8', type:'bebida', title:'Ultra Strawberry Dreams', price:12.00, img:'dreams.jpg', desc:'Sobre o Sabor: Morango '}, 
+    { id: 'b9', type:'bebida', title:'Energy Ultra Violet', price:12.00, img:'violet uva.jpg', desc:'Sobre o Sabor: uva cítrica Sem açúcar 473ml'},   
+    {id: 'b10', type:'bebida', title:'Energy Ultra Peachy Keen', price:12.00, img:'pêssego.jpg', desc:'Sobre o Sabor: pêssego com o blend secreto Monster Energy'},
+
+           /*refrigente */ 
+       { id: 'r1', type:'refrigerante', title:'Sprite Zero Áçucar', price:6.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Áçucar 350ml'},
+       { id: 'r2', type:'refrigerante', title:'Sprite', price:6.00, img:'sprite.jpg', desc:' Sprite Lata 310ml.'}, 
+       { id: 'r3', type:'refrigerante', title:'Coca-Cola Zero Açúcar', price:6.00, img:'coca cola zero.jpg', desc:'Coca-Cola Zero 310ml'},
+       { id: 'r4', type:'refrigerante', title:'Coca-Cola', price:6.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca-Cola 310ml'},
+       { id: 'r5', type:'refrigerante', title:'Fanta Uva', price:6.00, img:'R.jpg', desc:'Fanta Uva 310ml'},   
+       {id:  'r6', type:'refrigerante', title:'Fanta Laranja', price:6.00, img:'laranja fanta.jpg', desc:'Fanta Laranja 310ml'},
+       { id: 'r7', type:'refrigerante', title:'Coca-Cola 2L', price:14.00, img:'images.jpg', desc:'Coca-Cola 2L'},
+   
                
 ];
 
-const sampleCombos = [
-    { id:'c1', title:'Em breve !!!!', price:15.00, desc:'', img:' '}
-];
 
-const galleryImgs = [
-    'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/carne.jpgs',
-    'https://www.vivaespetos.com.br/wp-content/uploads/2019/05/medfrango.jpg',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF_5v6wfwAzAj7gI7dJ0FTZUlVgOfHeX7mfw&s',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKfJRsNu438OsjiJDGgbVx9p45wJKgIpZOw&s',
-    'https://www.vivaespetos.com.br/wp-content/uploads/2021/04/linguica.jpg',
-
-    /* refrigernates */
-    'https://superrissul.vtexassets.com/arquivos/ids/934006/Refrigerante-CocaCola-Lata-310ml.png?v=638951389750830000',
-
-    /*cervejas*/
-    'https://superprix.vteximg.com.br/arquivos/ids/217066-600-600/558184_1.jpg?v=63828309988470000',
-
-    /*pingas*/
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoMxWTcnMNIr5reLwlCFO_QUo1wGJlzw3Tw&s'
-];
 if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify(sampleProducts));
 if(!localStorage.getItem('combos')) localStorage.setItem('combos', JSON.stringify(sampleCombos));
 if(!localStorage.getItem('gallery')) localStorage.setItem('gallery', JSON.stringify(galleryImgs));
@@ -895,7 +875,7 @@ function openWhatsApp(text){
     window.open(url, '_blank');
 }
 
-const VERSION = "1.1";        //status de atualização do sistema, caso queira forçar limpeza de cache e dados antigos, basta mudar esta string para algo diferente (ex: "1.2")
+const VERSION = "1.2";        //status de atualização do sistema, caso queira forçar limpeza de cache e dados antigos, basta mudar esta string para algo diferente (ex: "1.2")
 
 if(localStorage.getItem("version") !== VERSION){
     localStorage.clear();
