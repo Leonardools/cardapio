@@ -493,6 +493,14 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 
 <script>
 
+/* === CONTROLE DE VERSÃO / CACHE === */
+const VERSAO_ATUAL = '1.0.1';
+const versaoSalva = localStorage.getItem('versao_site');
+if (versaoSalva !== VERSAO_ATUAL) {
+  localStorage.setItem('versao_site', VERSAO_ATUAL);
+  if (versaoSalva !== null) window.location.reload(true);
+}
+
 /* ===========================
    Dados iniciais
    =========================== */
@@ -524,7 +532,7 @@ const sampleProducts = [
     { id: 'b1', type:'bebida', title:'Energy Juice Khaotic', price:12.00, img:'laranja.jpg ', desc:'Sobre o Sabor: Suco de laranja com energético. 473ml'},
     { id: 'b2', type:'bebida', title:'Ultra Fiesta Mango', price:12.00, img:'mango loco zero.jpg', desc:'Monster Sabor:: tropical de manga 473ml'},
     { id: 'b3', type:'bebida', title:'Energy Absolutely Zero', price:12.00, img:'ABSOLUTYY.jpg', desc:'Sobre o Sabor: Monster Energy com um leve toque cítrico'},
-    { id: 'b4', type:'bebida', title:'Tradicional Zero', price:12.00, img:'zeroooooooooo.jpg', desc:'Monster Tradicional Zero 473ml'},
+    { id: 'b4', type:'bebida', title:'Energy Zero Sugar', price:12.00, img:'Captura de tela 2026-05-13 134105.png', desc:'Monster Tradicional Zero 473ml'},
     { id: 'b5', type:'bebida', title:'Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
     { id: 'b6', type:'bebida', title:' VR|46 Valentino Rossi', price:12.00, img:'docter.jpg', desc:'Sobre o SaborGrape Fruit "Toranja" 473ml'},
     { id: 'b7', type:'bebida', title:'Juice Pacific Punch', price:12.00, img:'juice pacific punch.png', desc:'Sabor tropical que é leve, suave e o toque perfeito de doce.'},
@@ -898,14 +906,6 @@ function openWhatsApp(text){
     window.open(url, '_blank');
 }
 
-const VERSION = "1.3";        //status de atualização do sistema, caso queira forçar limpeza de cache e dados antigos, basta mudar esta string para algo diferente (ex: "1.2")
-
-if(localStorage.getItem("version") !== VERSION){
-    localStorage.clear();
-    localStorage.setItem("version", VERSION);
-}
-
-
 /* ===========================
    Promoções & Combos (mantido)
    =========================== */
@@ -1116,8 +1116,6 @@ window.deleteProduct = deleteProduct;
 /* Initialize promo badge display */
 qs('promoBadge').classList.remove('hidden');
 
-/* Render homepage quick products and all grids periodically if localStorage changes (simple) */
-setInterval(()=>{ renderProducts(); renderDrinks(); renderQuickGrid(); renderGallery(); renderCartCount(); }, 4000);
 
 // Certifica que as funções openCart e closeCart estão globais, caso necessário.
 window.openCart = openCart;
