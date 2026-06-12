@@ -7,7 +7,7 @@
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title> Sip & Snack: — Loja Online</title>
+<title>Sip & Snack - Loja Online</title>
 <link rel="icon" href="">
 <style>
 
@@ -275,19 +275,19 @@
     <div class="brand">
         <img class="logo" src="unnamed.jpg" alt="logo">
         <div>
-            <h1>Sip & Snack: — Conveniência</h1>
-            <div style="font-size:12px;opacity:0.9">Praticidade • Agilidade • Conveniência.</div>
+            <h1>Sip & Snack - Conveni&ecirc;ncia</h1>
+            <div style="font-size:12px;opacity:0.9">Praticidade &bull; Agilidade &bull; Conveni&ecirc;ncia.</div>
         </div>
-        <button id="openMenuBtn" class="icon-btn" onclick="openMenu()" title="Abrir Menu">☰</button>
+        <button id="openMenuBtn" class="icon-btn" onclick="openMenu()" title="Abrir Menu">&#9776;</button>
     </div>
 
     <nav class="desktop-nav" id="desktopNav">
-        <button onclick="showSection('home')" id="d-btn-home" class="active">🏠 Home</button>
-        <button onclick="showSection('cardapio')" id="d-btn-cardapio">🍢 Doces e variados</button>
-        <button onclick="showSection('bebidas')" id="d-btn-bebidas">⚡ Energéticos </button>
-      <button onclick="showSection('refrigerantes')" id="d-btn-refrigerantes">🥤 Refrigerantes</button>
-        <button onclick="showSection('sobre')" id="d-btn-sobre">ℹ️ Sobre</button>
-        <button onclick="showSection('contato')" id="d-btn-contato">📞 Contato</button>
+        <button onclick="showSection('home')" id="d-btn-home" class="active">Home</button>
+        <button onclick="showSection('cardapio')" id="d-btn-cardapio">Doces e variados</button>
+        <button onclick="showSection('bebidas')" id="d-btn-bebidas">Energ&eacute;ticos</button>
+      <button onclick="showSection('refrigerantes')" id="d-btn-refrigerantes">Refrigerantes</button>
+        <button onclick="showSection('sobre')" id="d-btn-sobre">Sobre</button>
+        <button onclick="showSection('contato')" id="d-btn-contato">Contato</button>
     </nav>
     
     <div class="top-actions">
@@ -295,29 +295,29 @@
             <input id="search" class="search" placeholder="Pesquisar..." oninput="renderProducts()" />
         </div>
 
-        <button class="icon-btn" onclick="toggleTheme()" title="Alternar tema">🌙</button>
+        <button class="icon-btn" onclick="toggleTheme()" title="Alternar tema">Tema</button>
 
-        <button class="icon-btn" onclick="openAdmin()" title="Admin">⚙️</button>
+        <button class="icon-btn" onclick="openAdmin()" title="Admin">Admin</button>
 
-        <button class="icon-btn" onclick="openCart()" title="Carrinho">🛒 <span id="cartCount" class="count" style="margin-left:6px;background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:10px">0</span></button>
+        <button class="icon-btn" onclick="openCart()" title="Carrinho">Carrinho <span id="cartCount" class="count" style="margin-left:6px;background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:10px">0</span></button>
     </div>
 </header>
 
 <nav class="side" id="sideNav">   
-    <span onclick="closeMenu()" style="position:absolute; top:20px; right:20px; font-size:30px; cursor:pointer;">×</span> 
-    <button onclick="showSection('home')" id="btn-home" class="active">🏠 Home</button>
-    <button onclick="showSection('cardapio')" id="btn-cardapio">🍢 Doces e variados</button>
-    <button onclick="showSection('bebidas')" id="btn-bebidas">⚡ Energéticos</button>
-    <button onclick="showSection('refrigerantes')" id="btn-refrigerantes">🥤 Refrigerantes</button>
-    <button onclick="showSection('sobre')" id="btn-sobre">ℹ️ Sobre</button>
-    <button onclick="showSection('contato')" id="btn-contato">📞 Contato</button>
+    <span onclick="closeMenu()" style="position:absolute; top:20px; right:20px; font-size:30px; cursor:pointer;">&times;</span> 
+    <button onclick="showSection('home')" id="btn-home" class="active">Home</button>
+    <button onclick="showSection('cardapio')" id="btn-cardapio">Doces e variados</button>
+    <button onclick="showSection('bebidas')" id="btn-bebidas">Energ&eacute;ticos</button>
+    <button onclick="showSection('refrigerantes')" id="btn-refrigerantes">Refrigerantes</button>
+    <button onclick="showSection('sobre')" id="btn-sobre">Sobre</button>
+    <button onclick="showSection('contato')" id="btn-contato">Contato</button>
 </nav>
 
 <nav class="admin-panel" id="adminPanel" style="display:none">
     <div style="font-weight:700;margin-bottom:8px">Painel Admin</div> 
     <button class="btn" onclick="openAdminModal()">Adicionar Produto</button>
     <div style="margin-top:8px">
-        <label class="muted">Senha rápida</label>
+        <label class="muted">Senha r&aacute;pida</label>
         <input id="adminPass" style="width:100%;padding:6px;border-radius:8px;border:1px solid #ddd;margin-top:6px" placeholder="Digite sua Senha:" />
         <button class="btn secondary" style="width:100%;margin-top:8px" onclick="unlockAdmin()">Desbloquear</button>
     </div>
@@ -327,14 +327,14 @@
     <section id="homeSection">
         <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
             <div style="flex:1;min-width:280px">
-                <h2>Sip & Snack: — Loja Online</h2>
-                <p class="muted">Sua dose diária de praticidade com a agilidade que você precisa.</p>
+                <h2>Sip & Snack - Loja Online</h2>
+                <p class="muted">Sua dose di&aacute;ria de praticidade com a agilidade que voc&ecirc; precisa.</p>
                 <div style="margin-top:12px;display:flex;gap:8px">
                     <button class="btn" onclick="showSection('cardapio')">Ver Doces</button>
                     <button class="btn secondary" onclick="showSection('bebidas')">Ver Bebidas</button>
                 </div>
                 <div style="margin-top:14px">
-                    <span class="muted">Aceitamos:</span>Cartão, Pix e Dinheiro• <span class="muted">Horario:</span> 7:00 - 18:00
+                    <span class="muted">Aceitamos:</span> Cart&atilde;o, Pix e Dinheiro &bull; <span class="muted">Hor&aacute;rio:</span> 7:00 - 18:00
                 </div>
             </div>
             <div style="width:360px">                                                                                   
@@ -342,34 +342,34 @@
             </div>
         </div>
 
-        <h3 style="margin: top 26px;">Os preferidos da galera.🥤🔥</h3>
+        <h3 style="margin: top 26px;">Os preferidos da galera</h3>
         <div id="quickGrid" class="grid" style="margin-top:12px"></div>
     </section>
 
     <section id="cardapioSection" class="hidden">
-        <h2>🍢 Cardápio </h2>
+        <h2>Card&aacute;pio</h2>
         <div class="grid" id="productsGrid" style="margin-top:12px"></div>
     </section>
 
     <section id="bebidasSection" class="hidden">
-        <h2>⚡Energéticos</h2>
+        <h2>Energ&eacute;ticos</h2>
         <div class="grid" id="drinksGrid" style="margin-top:12px"></div>
     </section>
 
   <section id="refrigerantesSection" class="hidden">
-    <h2>🥤 Refrigerantes</h2>
+    <h2>Refrigerantes</h2>
     <div class="grid" id="refrigerantesGrid" style="margin-top:12px"></div>
 </section>
 
     <section id="sobreSection" class="hidden">
-       <h2>ℹ️ Sobre Nós</h2>
+       <h2>Sobre N&oacute;s</h2>
         <div class="cols">
             <div>
-                <p>O Sip & Snack nasceu focados em agilidade e variedade, oferecemos uma curadoria exclusiva de itens práticos para o seu dia a dia,
-Trabalhamos com os pilares da praticidade e conveniência, garantindo que você encontre o que precisa em poucos segundos. De bebidas geladas a snacks que salvam o seu dia, estamos aqui para facilitar a sua rotina com eficiência e um atendimento dinâmico.</p>
+                <p>O Sip & Snack nasceu focado em agilidade e variedade, oferecendo uma curadoria exclusiva de itens pr&aacute;ticos para o seu dia a dia.
+Trabalhamos com os pilares da praticidade e conveni&ecirc;ncia, garantindo que voc&ecirc; encontre o que precisa em poucos segundos. De bebidas geladas a snacks que salvam o seu dia, estamos aqui para facilitar a sua rotina com efici&ecirc;ncia e um atendimento din&acirc;mico.</p>
                 <ul>
-                    <li>Missão:Oferecer produtos de alta qualidade, com sabor marcante, proporcionando satisfação, confiança e alegria aos nossos clientes em cada atendimento.</li>
-                    <li>Visão:Destacando-se pela qualidade dos produtos, excelência no atendimento e compromisso com a satisfação do cliente.</li>
+                    <li>Miss&atilde;o: Oferecer produtos de alta qualidade, com sabor marcante, proporcionando satisfa&ccedil;&atilde;o, confian&ccedil;a e alegria aos nossos clientes em cada atendimento.</li>
+                    <li>Vis&atilde;o: Destacar-se pela qualidade dos produtos, excel&ecirc;ncia no atendimento e compromisso com a satisfa&ccedil;&atilde;o do cliente.</li>
                     <li>Valores: Qualidade, Compromisso e respeito com o cliente</li>
                 </ul>
             </div>
@@ -377,7 +377,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
     </section>
 
     <section id="contatoSection" class="hidden">
-        <h2>📞 Contato e Localização</h2>
+        <h2>Contato e Localiza&ccedil;&atilde;o</h2>
         <div class="cols" style="align-items:start">
             <div>
                 <form id="contactForm">
@@ -390,7 +390,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
                     <button class="btn" onclick="sendContact(event)">Enviar via WhatsApp</button>
                 </form>
                 <h4 style="margin-top:12px">Formas de Pagamento</h4>
-                <p class="muted">Aceitamos Dinheiro, Cartões e PIX. Gere um QR Code de pagamento abaixo:</p>
+                <p class="muted">Aceitamos Dinheiro, Cart&otilde;es e PIX. Gere um QR Code de pagamento abaixo:</p>
                 <div style="display:flex;gap:8px;align-items:center">
                     <input id="pixValue" placeholder="Valor R$" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:120px">
                     <button class="btn" onclick="generateQR()">Gerar QR</button>
@@ -398,7 +398,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
                 <div id="qrcode" style="margin-top:12px"></div>
             </div>
             <div>
-                <h4>Localização</h4>
+                <h4>Localiza&ccedil;&atilde;o</h4>
                 <iframe id="gmap" src="  " width="100%" height="320" style="border:0;border-radius:8px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
@@ -406,7 +406,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 
 <div id="cartModal" class="modal-backdrop">
         <div class="modal large">
-            <button class="close-modal-x" onclick="closeCart()">×</button>
+            <button class="close-modal-x" onclick="closeCart()">&times;</button>
             
             <div style="padding:18px;width:420px">
                 <h3>Carrinho</h3>
@@ -430,7 +430,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 
     <div id="productModalBackdrop" class="modal-backdrop">
         <div class="modal large" id="productModal">
-            <button class="close-modal-x" onclick="closeProductModal()">×</button>
+            <button class="close-modal-x" onclick="closeProductModal()">&times;</button>
             
             <img id="modalImg" src="" alt="produto">
             <div class="content">
@@ -449,19 +449,19 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 
                 <hr style="margin:12px 0">
                 <div>
-                    <h4>Avaliações</h4>
+                    <h4>Avalia&ccedil;&otilde;es</h4>
                     <div id="reviewsList" style="max-height:160px;overflow:auto"></div>
                     <div style="margin-top:8px">
                         <div class="stars" id="starInput">
-                            <label onclick="setStar(1)">1⭐</label>
-                            <label onclick="setStar(2)">2⭐</label>
-                            <label onclick="setStar(3)">3⭐</label>
-                            <label onclick="setStar(4)">4⭐</label>
-                            <label onclick="setStar(5)">5⭐</label>
+                            <label onclick="setStar(1)">1</label>
+                            <label onclick="setStar(2)">2</label>
+                            <label onclick="setStar(3)">3</label>
+                            <label onclick="setStar(4)">4</label>
+                            <label onclick="setStar(5)">5</label>
                         </div>
                         <input id="reviewName" placeholder="Seu nome" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:100%;margin-top:8px">
-                        <textarea id="reviewText" placeholder="Escreva sua avaliação..." rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:8px"></textarea>
-                        <button class="btn" style="margin-top:8px" onclick="submitReview()">Enviar Avaliação</button>
+                        <textarea id="reviewText" placeholder="Escreva sua avalia&ccedil;&atilde;o..." rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:8px"></textarea>
+                        <button class="btn" style="margin-top:8px" onclick="submitReview()">Enviar Avalia&ccedil;&atilde;o</button>
                     </div>
                 </div>
             </div>
@@ -473,10 +473,10 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 <footer>
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
         <div>
-            <strong>Sip & Snack- Conveniência</strong><br>
-            Brasília - DF • Atendimento 7h–18h<br>
+            <strong>Sip & Snack - Conveni&ecirc;ncia</strong><br>
+            Bras&iacute;lia - DF &bull; Atendimento 7h-18h<br>
             <div style="margin-top:8px">
-                <button class="btn" onclick="openWhatsApp('Olá, gostaria de informações sobre os produtos')">WhatsApp</button>
+                <button class="btn" onclick="openWhatsApp('Ola, gostaria de informacoes sobre os produtos')">WhatsApp</button>
                 <button class="btn secondary" onclick="showSection('contato')">Contato</button>
             </div>
         </div>
@@ -486,7 +486,7 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
                 <a class="pill" href="#" onclick="alert('Abrir Instagram')">Instagram</a>
                 <a class="pill" href="#" onclick="alert('Abrir Facebook')" style="margin-left:6px">Facebook</a>
             </div>
-            <div style="margin-top:8px;font-size:12px" class="muted">© 2025 • Todos os direitos reservados</div>
+            <div style="margin-top:8px;font-size:12px" class="muted">&copy; 2025 &bull; Todos os direitos reservados</div>
         </div>
     </div>
 </footer>
@@ -494,12 +494,9 @@ Trabalhamos com os pilares da praticidade e conveniência, garantindo que você 
 <script>
 
 /* === CONTROLE DE VERSÃO / CACHE === */
-const VERSAO_ATUAL = '1.0.1';
+const VERSAO_ATUAL = '1.0.4'; // Atualize este número a cada mudança significativa no catálogo ou código
 const versaoSalva = localStorage.getItem('versao_site');
-if (versaoSalva !== VERSAO_ATUAL) {
-  localStorage.setItem('versao_site', VERSAO_ATUAL);
-  if (versaoSalva !== null) window.location.reload(true);
-}
+const precisaAtualizarCatalogo = versaoSalva !== VERSAO_ATUAL;
 
 /* ===========================
    Dados iniciais
@@ -508,47 +505,49 @@ const sampleProducts = [
 
     /*  HOME INICIAL */
     { id: 'p1', type:'bebida', title:'Monster Energy Juice Mango Loco', price:12.00, img:'mango loco tradiconal.jpg', desc:'Monster Mongo Loco 473ml'},
-    { id: 'p2',  type:'bebida', title:'Monster Energy Juice Tradicional', price:12.00, img:'tradicionalaa.jpg ', desc:'Monster Tradiconal 473ml'},
-    { id: 'p3', type:'bebida', title:'Monster Energy Ultra White', price:12.00, img:'zero branco.jpg ', desc:'Monster Energy Ultra White 473ml'},
+    { id: 'p2',  type:'bebida', title:'Monster Energy Juice Tradicional', price:12.00, img:'tradicionalaa.jpg', desc:'Monster Tradiconal 473ml'},
+    { id: 'p3', type:'bebida', title:'Monster Energy Ultra White', price:12.00, img:'zero branco.jpg', desc:'Monster Energy Ultra White 473ml'},
     { id: 'p4', type:'bebida', title:' Monster Energy Juice Pipeline Punch', price:12.00, img:'goiaba.jpg', desc:' Monster Pipeline Punch 473ml'},
-    { id: 'p5',  type:'Refrigentante', title:'Água com gás', price:4.00, img:'com gás.jpg', desc:'Água com gás 500ml'},
+    { id: 'p5',  type:'refrigerante', title:'Agua com gas', price:4.00, img:'com g\u00e1s.jpg', desc:'Agua com gas 500ml'},
 
     /* COMIDA */
     { id: 'c1', type:'comida', title:'Bala Halls Morango 28g', price:2.50 , img:'halls morango.png', desc:'Bala Halls Morango 28g'},       
     { id: 'c2', type:'comida', title:'Bala Halls Extra Forte', price: 2.50 , img:'Captura de tela 2026-05-13 105339.png',desc:'Bala Halls Extra-Forte 28g'},
-    { id: 'c3', type:'comida', title:'EM BREVE !!!', price:0.00, img:'SNICKERES 1.jpg', desc:'Chocolate barrinha Snickers 45g'},
-    { id: 'c4', type:'comida', title:'EM BREVE !!!', price:0.00, img:'KITKAT.jpg', desc:'Chocolate Kitkat 4 Fingers Ao Leite 41,5g'},
-    { id: 'c5', type:'comida', title:'EM BREVE !!!', price:0.00, img:' M&M.jpg', desc:'Chocolate M&amp;m Ao Leite 40g'},
-    { id: 'c6', type:'comida', title:'EM BREVE !!!', price:0.00, img:'CHOKITO.jpg', desc:'Chocolate Chokito Nestlé 32g'},
-    { id: 'c7', type:'comida', title:'EM BREVE !!!', price:0.00, img:'LOOK SABORES.jpg', desc:'Caixa De Biscoito Look Sabores 55g'},
-    { id: 'c8', type:'comida', title:'EM BREVE !!!', price:0.00, img:'prestigio.png', desc:'Chocolate Prestígio Nestlé 33g'},
-    { id: 'c9', type:'comida', title:'EM BREVE !!!', price:0.00, img:'bis extra.jpg' , desc:'Lacta Chocolate ao Leite Bis Xtra 45g'},
-    { id: 'c10', type:'comida', title:'EM BREVE !!!', price:0.00, img:'1116041-1200-auto.webp', desc:'Lacta Chocolate Bis Xtra branco 45g'},
+    { id: 'c3', type:'comida', title:'Chocolate Snickers 45g', price:0.00, img:'SNICKERES 1.jpg', desc:'Chocolate barrinha Snickers 45g'},
+    { id: 'c4', type:'comida', title:'Chocolate KitKat 41,5g', price:0.00, img:'KITKAT.jpg', desc:'Chocolate Kitkat 4 Fingers Ao Leite 41,5g'},
+    { id: 'c5', type:'comida', title:'Chocolate M&M ao leite 40g', price:0.00, img:'M&M.jpg', desc:'Chocolate M&amp;m Ao Leite 40g'},
+    { id: 'c6', type:'comida', title:'Chocolate Chokito 32g', price:0.00, img:'CHOKITO.jpg', desc:'Chocolate Chokito Nestle 32g'},
+    { id: 'c7', type:'comida', title:'Biscoito Look Sabores 55g', price:0.00, img:'LOOK SABORES.jpg', desc:'Caixa De Biscoito Look Sabores 55g'},
+    { id: 'c8', type:'comida', title:'Chocolate Prestigio 33g', price:0.00, img:'prestigio.png', desc:'Chocolate Prestigio Nestle 33g'},
+    { id: 'c9', type:'comida', title:'Chocolate Bis Xtra 45g', price:0.00, img:'bis extra.jpg' , desc:'Lacta Chocolate ao Leite Bis Xtra 45g'},
+    { id: 'c10', type:'comida', title:'Chocolate Bis Xtra Branco 45g', price:0.00, img:'1116041-1200-auto.webp', desc:'Lacta Chocolate Bis Xtra branco 45g'},
 
 
                 
     
     /* Monster */
-    { id: 'b1', type:'bebida', title:'Energy Juice Khaotic', price:12.00, img:'laranja.jpg ', desc:'Sobre o Sabor: Suco de laranja com energético. 473ml'},
+    { id: 'b1', type:'bebida', title:'Energy Juice Khaotic', price:12.00, img:'laranja.jpg', desc:'Sobre o Sabor: Suco de laranja com energetico. 473ml'},
     { id: 'b2', type:'bebida', title:'Ultra Fiesta Mango', price:12.00, img:'mango loco zero.jpg', desc:'Monster Sabor:: tropical de manga 473ml'},
-    { id: 'b3', type:'bebida', title:'Energy Absolutely Zero', price:12.00, img:'ABSOLUTYY.jpg', desc:'Sobre o Sabor: Monster Energy com um leve toque cítrico'},
+    { id: 'b3', type:'bebida', title:'Energy Absolutely Zero', price:12.00, img:'ABSOLUTYY.jpg', desc:'Sobre o Sabor: Monster Energy com um leve toque citrico'},
     { id: 'b4', type:'bebida', title:'Energy Zero Sugar', price:12.00, img:'Captura de tela 2026-05-13 134105.png', desc:'Monster Tradicional Zero 473ml'},
     { id: 'b5', type:'bebida', title:'Ultra Watermelon', price:12.00, img:'download.jpg', desc:' Monster Ultra Watermelon.'}, 
     { id: 'b6', type:'bebida', title:' VR|46 Valentino Rossi', price:12.00, img:'docter.jpg', desc:'Sobre o SaborGrape Fruit "Toranja" 473ml'},
-    { id: 'b7', type:'bebida', title:'Juice Pacific Punch', price:12.00, img:'juice pacific punch.png', desc:'Sabor tropical que é leve, suave e o toque perfeito de doce.'},
+    { id: 'b7', type:'bebida', title:'Juice Pacific Punch', price:12.00, img:'juice pacific punch.png', desc:'Sabor tropical leve, suave e doce.'},
     { id: 'b8', type:'bebida', title:'Ultra Strawberry Dreams', price:12.00, img:'dreams.jpg', desc:'Sobre o Sabor: Morango '}, 
-    { id: 'b9', type:'bebida', title:'Energy Ultra Violet', price:12.00, img:'violet uva.jpg', desc:'Sobre o Sabor: uva cítrica Sem açúcar 473ml'},   
-    { id: 'b10', type:'bebida', title:'Energy Ultra Peachy Keen', price:12.00, img:'pêssego.jpg', desc:'Sobre o Sabor: pêssego com o blend secreto Monster Energy'},
-    { id: 'b11', type:'bebida', title:'Energy Dragon Ice Tea Limão', price:12.00, img:'limao.jpg', desc:'Sobre o Sabor: Chá gelado de limão com energético 473ml'},
+    { id: 'b9', type:'bebida', title:'Energy Ultra Violet', price:12.00, img:'violet uva.jpg', desc:'Sobre o Sabor: uva citrica sem acucar 473ml'},   
+    { id: 'b10', type:'bebida', title:'Energy Ultra Peachy Keen', price:12.00, img:'p\u00eassego.jpg', desc:'Sobre o Sabor: pessego com o blend secreto Monster Energy'},
+    { id: 'b11', type:'bebida', title:'Energy Dragon Ice Tea Limao', price:12.00, img:'limao.jpg', desc:'Sobre o Sabor: Cha gelado de limao com energetico 473ml'},
 
            /*refrigente */ 
-       { id: 'r1', type:'refrigerante', title:'Sprite Zero Áçucar', price:6.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Áçucar 350ml'},
+       { id: 'r1', type:'refrigerante', title:'Sprite Zero Acucar', price:6.00, img:'zero sprite.jpg', desc:'Sprite Lata Zero Acucar 350ml'},
        { id: 'r2', type:'refrigerante', title:'Sprite', price:6.00, img:'sprite.jpg', desc:' Sprite Lata 310ml.'}, 
-       { id: 'r3', type:'refrigerante', title:'Coca-Cola Zero Açúcar', price:6.00, img:'coca cola zero.jpg', desc:'Coca-Cola Zero 310ml'},
+       { id: 'r3', type:'refrigerante', title:'Coca-Cola Zero Acucar', price:6.00, img:'coca cola zero.jpg', desc:'Coca-Cola Zero 310ml'},
        { id: 'r4', type:'refrigerante', title:'Coca-Cola', price:6.00, img:'refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca-Cola 310ml'},
        { id: 'r5', type:'refrigerante', title:'Fanta Uva', price:6.00, img:'R.jpg', desc:'Fanta Uva 310ml'},   
        {id:  'r6', type:'refrigerante', title:'Fanta Laranja', price:6.00, img:'laranja fanta.jpg', desc:'Fanta Laranja 310ml'},
-       { id: 'r7', type:'refrigerante', title:'Coca-Cola 2L', price:14.00, img:'images.jpg', desc:'Coca-Cola 2L'},
+       { id: 'r7', type:'refrigerante', title:'Coca-Cola 2L', price:14.00, img:'images.jpg', desc:'Coca-Cola 2L'},  
+       {id: 'r8', type:'refrigerante', title:'Coca-Cola Zero 2L', price:14.00, img:'Captura de tela 2026-06-12 132222.png', desc:'Coca-Cola Zero 2L'},
+       
    
                
 ];
@@ -573,9 +572,22 @@ const galleryImgs = [
     /*pingas*/
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoMxWTcnMNIr5reLwlCFO_QUo1wGJlzw3Tw&s'
 ];
-if(!localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify(sampleProducts));
-if(!localStorage.getItem('combos')) localStorage.setItem('combos', JSON.stringify(sampleCombos));
-if(!localStorage.getItem('gallery')) localStorage.setItem('gallery', JSON.stringify(galleryImgs));
+function catalogoSalvoQuebrado(){
+    try {
+        const produtos = JSON.parse(localStorage.getItem('products') || '[]');
+        if(!Array.isArray(produtos) || produtos.length < sampleProducts.length) return true;
+        const primeirasImagens = produtos.slice(0, 5).map(p => (p.img || '').trim()).filter(Boolean);
+        return new Set(primeirasImagens).size <= 1;
+    } catch(e) {
+        return true;
+    }
+}
+
+const deveRecriarCatalogo = precisaAtualizarCatalogo || catalogoSalvoQuebrado();
+if(deveRecriarCatalogo || !localStorage.getItem('products')) localStorage.setItem('products', JSON.stringify(sampleProducts));
+if(precisaAtualizarCatalogo || !localStorage.getItem('combos')) localStorage.setItem('combos', JSON.stringify(sampleCombos));
+if(precisaAtualizarCatalogo || !localStorage.getItem('gallery')) localStorage.setItem('gallery', JSON.stringify(galleryImgs));
+if(precisaAtualizarCatalogo) localStorage.setItem('versao_site', VERSAO_ATUAL);
 if(!localStorage.getItem('reviews')) localStorage.setItem('reviews', JSON.stringify({})); // reviews by product id
 if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]));
 
@@ -751,7 +763,7 @@ function renderDrinks(){
    =========================== */
 function openProduct(id){
     const p = getProducts().find(x => x.id===id);
-    if(!p) return alert('Produto não encontrado');
+    if(!p) return alert('Produto nao encontrado');
     selectedProduct = p;
     qs('modalImg').src = p.img;
     qs('modalTitle').innerText = p.title;
@@ -780,7 +792,7 @@ function renderReviews(pid){
         const d = document.createElement('div');
         d.style.borderTop='1px dashed rgba(0,0,0,0.06)';
         d.style.padding='8px 0';
-        d.innerHTML = `<div style="display:flex;justify-content:space-between"><strong>${r.name}</strong><div>${'⭐'.repeat(r.star)}</div></div><div class="muted">${r.text}</div>`;
+        d.innerHTML = `<div style="display:flex;justify-content:space-between"><strong>${r.name}</strong><div>${'*'.repeat(r.star)}</div></div><div class="muted">${r.text}</div>`;
         container.appendChild(d);
     });
 }
@@ -788,7 +800,7 @@ function renderReviews(pid){
 function setStar(n){ currentStar = n; Array.from(qs('starInput').children).forEach((c,i)=> c.style.background = i< n ? 'rgba(255,200,0,0.18)' : ''); }
 function submitReview(){
     if(!selectedProduct) return alert('Abra um produto antes');
-    const name = qs('reviewName').value || 'Anônimo';
+    const name = qs('reviewName').value || 'Anonimo';
     const text = qs('reviewText').value || '';
     const star = currentStar || 5;
     const all = JSON.parse(localStorage.getItem('reviews') || '{}');
@@ -797,7 +809,7 @@ function submitReview(){
     localStorage.setItem('reviews', JSON.stringify(all));
     qs('reviewName').value=''; qs('reviewText').value='';
     renderReviews(selectedProduct.id);
-    alert('Avaliação enviada — obrigado!');
+    alert('Avaliacao enviada. Obrigado!');
 }
 
 /* ===========================
@@ -835,7 +847,7 @@ function closeCart(){ qs('cartModal').style.display = 'none'; }
 function renderCart(){
     const c = getCart();
     const cont = qs('cartItems'); cont.innerHTML = '';
-    if(c.length===0){ cont.innerHTML = '<div class="muted">Seu carrinho está vazio</div>'; qs('cartTotal').innerText = money(0); return; }
+    if(c.length===0){ cont.innerHTML = '<div class="muted">Seu carrinho esta vazio</div>'; qs('cartTotal').innerText = money(0); return; }
     c.forEach(item=>{
         const row = document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='8px 0'; 
         row.innerHTML = `<div><strong>${item.title}</strong><div class="muted">Qtd: ${item.qty} x ${money(item.price)}</div></div><div><button class="btn" onclick="changeQty('${item.id}',1)">+</button> <button class="btn secondary" onclick="changeQty('${item.id}',-1)">-</button> <button class="btn secondary" onclick="removeFromCart('${item.id}')">Remover</button></div>`;
@@ -879,20 +891,20 @@ function checkoutWhatsApp(){
     const clientName = localStorage.getItem('clientName') || 'Cliente';
 
     let text = 
-` *NOVO PEDIDO — Sip & Snack- Conveniência* 
+` *NOVO PEDIDO - Sip & Snack - Conveniencia* 
  *Cliente:* ${clientName}
  *Itens do pedido:*`;
 
     c.forEach(i => {
-        text += `\n• ${i.qty}x ${i.title} — ${money(i.price * i.qty)}`;
+        text += `\n- ${i.qty}x ${i.title} - ${money(i.price * i.qty)}`;
     });
     text += `
 
  *Total:* ${money(total)}
  *Digite sua sala para entregar:* 
- *Observações:* 
+ *Observacoes:* 
 
- Aguardando confirmação do pedido. Obrigado!`;
+ Aguardando confirmacao do pedido. Obrigado!`;
 
     openWhatsApp(text);
 }
@@ -940,7 +952,7 @@ function addPromoToCart(){
     const existing = cart.find(i=>i.id===id);
     if(existing) existing.qty += 1; else cart.push({id:combo.id,title:combo.title,price:combo.price,qty:1});
     saveCart(cart);
-    alert('Promoção adicionada ao carrinho');
+    alert('Promocao adicionada ao carrinho');
 }
 
 function renderCombos(){
@@ -995,7 +1007,7 @@ function sendContact(e){
     // Salva nome do cliente
     localStorage.setItem('clientName', name);
 
-    const text = `Olá! Meu nome é * ${name}*.📞 Telefone: ${phone} Mensagem: ${msg}`;
+    const text = `Ola! Meu nome e *${name}*. Telefone: ${phone} Mensagem: ${msg}`;
     openWhatsApp(text);
 }
 
@@ -1004,8 +1016,8 @@ function sendContact(e){
    =========================== */
 function generateQR(){
     const v = Number(qs('pixValue').value || 0);
-    if(v<=0) return alert('Informe um valor válido');
-    const pixPayload = `Copia e Cola PIX - Sip & Snack- Conveniência - Valor R$${v.toFixed(2)}`;
+    if(v<=0) return alert('Informe um valor valido');
+    const pixPayload = `Copia e Cola PIX - Sip & Snack - Conveniencia - Valor R$${v.toFixed(2)}`;
     const url = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(pixPayload)}&chs=200x200&chld=L|1`;
     qs('qrcode').innerHTML = `<img src="${url}" alt="QR Code">`;
 }
@@ -1033,18 +1045,18 @@ function unlockAdmin(){
 
 function openAdminModal(){
         if(!isAdmin){
-            alert('Acesso negado! Faça login como admin.');
+            alert('Acesso negado! Faca login como admin.');
             return;
         }
     const modalRoot = document.createElement('div');
     modalRoot.style.position='fixed'; modalRoot.style.inset=0; modalRoot.style.background='rgba(0,0,0,0.45)'; modalRoot.style.display='flex'; modalRoot.style.alignItems='center'; modalRoot.style.justifyContent='center'; modalRoot.style.zIndex=200;
     const box = document.createElement('div'); box.style.background = getComputedStyle(document.body).getPropertyValue('--card'); box.style.padding='18px'; box.style.borderRadius='12px'; box.style.width='600px'; box.style.maxHeight='90vh'; box.style.overflow='auto';
     box.innerHTML = `<h3>Painel Admin - Adicionar Produto</h3>
-        <label>Título</label><input id="adm_title" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
+        <label>Titulo</label><input id="adm_title" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
         <label>Tipo (Doces|bebida)</label><input id="adm_type" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" value="espetinho">
-        <label>Preço</label><input id="adm_price" type="number" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
+        <label>Preco</label><input id="adm_price" type="number" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
         <label>Imagem URL</label><input id="adm_img" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
-        <label>Descrição</label><textarea id="adm_desc" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px"></textarea>
+        <label>Descricao</label><textarea id="adm_desc" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px"></textarea>
         <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="admAdd">Adicionar</button><button class="btn secondary" id="admClose">Fechar</button></div>
         <hr><h4>Produtos Existentes</h4><div id="admList"></div>
     `;
@@ -1053,7 +1065,7 @@ function openAdminModal(){
     qs('admClose').onclick = ()=> modalRoot.remove();
     qs('admAdd').onclick = ()=> {
         const title = qs('adm_title').value.trim(); const type = qs('adm_type').value.trim(); const price = Number(qs('adm_price').value); const img = qs('adm_img').value.trim(); const desc = qs('adm_desc').value.trim();
-        if(!title || !type || !price) return alert('Preencha título, tipo e preço');
+        if(!title || !type || !price) return alert('Preencha titulo, tipo e preco');
         const prods = getProducts();
         const id = 'p' + Math.floor(Math.random()*100000);
         prods.push({id,title,type,price,img: img || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=60',desc});
