@@ -18,7 +18,7 @@
         <img class="logo" src="img/unnamed.jpg" alt="logo">
         <div>
             <h1>Mercearia do Lucas - Loja Online</h1>
-            <div style="font-size:12px;opacity:0.9">Praticidade &bull; Agilidade &bull; Conveni&ecirc;ncia.</div>
+            <div class="brand-subtitle">Praticidade &bull; Agilidade &bull; Conveni&ecirc;ncia.</div>
         </div>
         <button id="openMenuBtn" class="icon-btn" onclick="openMenu()" title="Abrir Menu">&#9776;</button>
     </div>
@@ -41,12 +41,12 @@
 
         <button class="icon-btn" onclick="openAdmin()" title="Admin">Admin</button>
 
-        <button class="icon-btn" onclick="openCart()" title="Carrinho">Carrinho <span id="cartCount" class="count" style="margin-left:6px;background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:10px">0</span></button>
+        <button class="icon-btn" onclick="openCart()" title="Carrinho">Carrinho <span id="cartCount" class="count">0</span></button>
     </div>
 </header>
 
 <nav class="side" id="sideNav">   
-    <span onclick="closeMenu()" style="position:absolute; top:20px; right:20px; font-size:30px; cursor:pointer;">&times;</span> 
+    <button class="side-close" onclick="closeMenu()" title="Fechar menu">&times;</button>
     <button onclick="showSection('home')" id="btn-home" class="active">Home</button>
     <button onclick="showSection('cardapio')" id="btn-cardapio">Doces e variados</button>
     <button onclick="showSection('bebidas')" id="btn-bebidas">Energ&eacute;ticos</button>
@@ -55,52 +55,52 @@
     <button onclick="showSection('contato')" id="btn-contato">Contato</button>
 </nav>
 
-<nav class="admin-panel" id="adminPanel" style="display:none">
-    <div style="font-weight:700;margin-bottom:8px">Painel Admin</div> 
+<nav class="admin-panel hidden-panel" id="adminPanel">
+    <div class="panel-title">Painel Admin</div>
     <button class="btn" onclick="openAdminModal()">Adicionar Produto</button>
-    <div style="margin-top:8px">
+    <div class="stack-sm">
         <label class="muted">Senha r&aacute;pida</label>
-        <input id="adminPass" style="width:100%;padding:6px;border-radius:8px;border:1px solid #ddd;margin-top:6px" placeholder="Digite sua Senha:" />
-        <button class="btn secondary" style="width:100%;margin-top:8px" onclick="unlockAdmin()">Desbloquear</button>
+        <input id="adminPass" class="form-control" placeholder="Digite sua Senha:" />
+        <button class="btn secondary full-width" onclick="unlockAdmin()">Desbloquear</button>
     </div>
 </nav>
 
 <main id="main">
     <section id="homeSection">
-        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-            <div style="flex:1;min-width:280px">
+        <div class="hero">
+            <div class="hero-copy">
                 <h2>Mercearia do Lucas - Loja Online</h2>
                 <p class="muted">Sua dose di&aacute;ria de praticidade com a agilidade que voc&ecirc; precisa.</p>
-                <div style="margin-top:12px;display:flex;gap:8px">
+                <div class="button-row">
                     <button class="btn" onclick="showSection('cardapio')">Ver Doces</button>
                     <button class="btn secondary" onclick="showSection('bebidas')">Ver Bebidas</button>
                 </div>
-                <div style="margin-top:14px">
+                <div class="service-info">
                     <span class="muted">Aceitamos:</span> Cart&atilde;o, Pix e Dinheiro &bull; <span class="muted">Hor&aacute;rio:</span> 7:00 - 18:00
                 </div>
             </div>
-            <div style="width:360px">                                                                                   
-                <img src="img/unnamed.jpg" style="width:100%;border-radius:22px;box-shadow:0 10px 30px rgba(67, 32, 181, 0.12)" alt="churrasco">
+            <div class="hero-media">
+                <img src="img/unnamed.jpg" alt="Mercearia do Lucas">
             </div>
         </div>
 
-        <h3 style="margin: top 26px;">Os preferidos da galera</h3>
-        <div id="quickGrid" class="grid" style="margin-top:12px"></div>
+        <h3 class="section-title">Os preferidos da galera</h3>
+        <div id="quickGrid" class="grid products-grid"></div>
     </section>
 
     <section id="cardapioSection" class="hidden">
         <h2>Card&aacute;pio</h2>
-        <div class="grid" id="productsGrid" style="margin-top:12px"></div>
+        <div class="grid products-grid" id="productsGrid"></div>
     </section>
 
     <section id="bebidasSection" class="hidden">
         <h2>Energ&eacute;ticos</h2>
-        <div class="grid" id="drinksGrid" style="margin-top:12px"></div>
+        <div class="grid products-grid" id="drinksGrid"></div>
     </section>
 
   <section id="refrigerantesSection" class="hidden">
     <h2>Refrigerantes</h2>
-    <div class="grid" id="refrigerantesGrid" style="margin-top:12px"></div>
+    <div class="grid products-grid" id="refrigerantesGrid"></div>
 </section>
 
     <section id="sobreSection" class="hidden">
@@ -120,28 +120,28 @@ Trabalhamos com os pilares da praticidade e conveni&ecirc;ncia, garantindo que v
 
     <section id="contatoSection" class="hidden">
         <h2>Contato e Localiza&ccedil;&atilde;o</h2>
-        <div class="cols" style="align-items:start">
+        <div class="cols align-start">
             <div>
                 <form id="contactForm">
                     <label>Nome</label><br>
-                    <input id="cName" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" required><br><br>
+                    <input id="cName" class="form-control" required><br><br>
                     <label>Telefone</label><br>
-                    <input id="cPhone" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" required><br><br>
+                    <input id="cPhone" class="form-control" required><br><br>
                     <label>Mensagem</label><br>
-                    <textarea id="cMsg" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" rows="4"></textarea><br><br>
+                    <textarea id="cMsg" class="form-control" rows="4"></textarea><br><br>
                     <button class="btn" onclick="sendContact(event)">Enviar via WhatsApp</button>
                 </form>
-                <h4 style="margin-top:12px">Formas de Pagamento</h4>
+                <h4 class="section-subtitle">Formas de Pagamento</h4>
                 <p class="muted">Aceitamos Dinheiro, Cart&otilde;es e PIX. Gere um QR Code de pagamento abaixo:</p>
-                <div style="display:flex;gap:8px;align-items:center">
-                    <input id="pixValue" placeholder="Valor R$" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:120px">
+                <div class="inline-form">
+                    <input id="pixValue" class="form-control pix-input" placeholder="Valor R$">
                     <button class="btn" onclick="generateQR()">Gerar QR</button>
                 </div>
-                <div id="qrcode" style="margin-top:12px"></div>
+                <div id="qrcode" class="qr-box"></div>
             </div>
             <div>
                 <h4>Localiza&ccedil;&atilde;o</h4>
-                <iframe id="gmap" src="  " width="100%" height="320" style="border:0;border-radius:8px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe id="gmap" class="map-frame" src="  " width="100%" height="320" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -150,14 +150,14 @@ Trabalhamos com os pilares da praticidade e conveni&ecirc;ncia, garantindo que v
         <div class="modal large">
             <button class="close-modal-x" onclick="closeCart()">&times;</button>
             
-            <div style="padding:18px;width:420px">
+            <div class="cart-panel">
                 <h3>Carrinho</h3>
-                <div id="cartItems" style="max-height:360px;overflow:auto;margin-top:12px"></div>
-                <div style="display:flex;justify-content:space-between;margin-top:12px">
+                <div id="cartItems" class="cart-items"></div>
+                <div class="cart-total-row">
                     <div class="muted">Total</div>
-                    <div id="cartTotal" style="font-weight:800">R$ 0,00</div>
+                    <div id="cartTotal" class="cart-total">R$ 0,00</div>
                 </div>
-                <div style="display:flex;gap:8px;margin-top:12px">
+                <div class="button-row">
                     <button class="btn" onclick="checkoutWhatsApp()">Fazer pedido via WhatsApp</button>
                     <button class="btn secondary" onclick="clearCart()">Limpar</button>
                     <button class="btn secondary" onclick="closeCart()">Fechar</button> 
@@ -166,34 +166,34 @@ Trabalhamos com os pilares da praticidade e conveni&ecirc;ncia, garantindo que v
 
    
                                            <!--Imagem decorativa para o carrinho-->
-            <img src="img/unnamed.jpg" alt="cart" style="object-fit:cover;height:100%"> 
+            <img class="cart-image" src="img/unnamed.jpg" alt="cart">
           </div>
     </div>
 
     <div id="productModalBackdrop" class="modal-backdrop">
         <div class="modal large" id="productModal">
-            <button class="close-modal-X" onclick="closeProductModal()">&times;</button>
+            <button class="close-modal-x" onclick="closeProductModal()">&times;</button>
             
             <img id="modalImg" src="" alt="produto">
             <div class="content">
                 <h3 id="modalTitle"></h3>
                 <p id="modalDesc" class="muted"></p>
                 <p><span id="modalPrice" class="price">R$ 0,00</span></p>
-                <div style="margin-top:12px">
+                <div class="field-row">
                     <label>Qtd</label>
-                    <input id="modalQty" type="number" value="1" min="1" style="width:80px;padding:8px;border-radius:8px;border:1px solid #ddd;margin-left:8px">
+                    <input id="modalQty" class="form-control qty-input" type="number" value="1" min="1">
                 </div>
-                <div style="margin-top:12px;display:flex;gap:8px">
+                <div class="button-row">
                     <button class="btn" onclick="addModalToCart()">Adicionar ao Carrinho</button>
                     <button class="btn secondary" onclick="playSizzle()">Tocar Som</button>
                     <button class="btn secondary" onclick="closeProductModal()">Fechar</button> 
                 </div>
 
-                <hr style="margin:12px 0">
+                <hr class="divider">
                 <div>
                     <h4>Avalia&ccedil;&otilde;es</h4>
-                    <div id="reviewsList" style="max-height:160px;overflow:auto"></div>
-                    <div style="margin-top:8px">
+                    <div id="reviewsList" class="reviews-list"></div>
+                    <div class="stack-sm">
                         <div class="stars" id="starInput">
                             <label onclick="setStar(1)">1</label>
                             <label onclick="setStar(2)">2</label>
@@ -201,9 +201,9 @@ Trabalhamos com os pilares da praticidade e conveni&ecirc;ncia, garantindo que v
                             <label onclick="setStar(4)">4</label>
                             <label onclick="setStar(5)">5</label>
                         </div>
-                        <input id="reviewName" placeholder="Seu nome" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:100%;margin-top:8px">
-                        <textarea id="reviewText" placeholder="Escreva sua avalia&ccedil;&atilde;o..." rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:8px"></textarea>
-                        <button class="btn" style="margin-top:8px" onclick="submitReview()">Enviar Avalia&ccedil;&atilde;o</button>
+                        <input id="reviewName" class="form-control" placeholder="Seu nome">
+                        <textarea id="reviewText" class="form-control" placeholder="Escreva sua avalia&ccedil;&atilde;o..." rows="2"></textarea>
+                        <button class="btn" onclick="submitReview()">Enviar Avalia&ccedil;&atilde;o</button>
                     </div>
                 </div>
             </div>
@@ -213,27 +213,27 @@ Trabalhamos com os pilares da praticidade e conveni&ecirc;ncia, garantindo que v
 </main>
 
 <footer>
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div class="footer-content">
         <div>
             <strong>Mercearia do Lucas - Conveni&ecirc;ncia</strong><br>
             Bras&iacute;lia - DF &bull; Atendimento 7h-18h<br>
-            <div style="margin-top:8px">
+            <div class="button-row">
                 <button class="btn" onclick="openWhatsApp('Ola, gostaria de informacoes sobre os produtos')">WhatsApp</button>
                 <button class="btn secondary" onclick="showSection('contato')">Contato</button>
             </div>
         </div>
-        <div style="text-align:right">
+        <div class="footer-social">
             <div class="muted">Siga-nos</div>
-            <div style="margin-top:8px">
+            <div class="social-links">
                 <a class="pill" href="https://www.instagram.com/lucascardoso692019?igsh=MWpudjZjMXFjaXZlYw==" target="_blank">Instagram</a>
-                <a class="pill" href="#" onclick="alert('Abrir Facebook')" style="margin-left:6px">Facebook</a>
+                <a class="pill" href="#" onclick="alert('Abrir Facebook')">Facebook</a>
             </div>
-            <div style="margin-top:8px;font-size:12px" class="muted">&copy; 2025 &bull; Todos os direitos reservados</div>
+            <div class="footer-copy muted">&copy; 2025 &bull; Todos os direitos reservados</div>
         </div>
     </div>
 </footer>
 
 <script src="js/script.js"></script>
-<div id="menuBackdrop" onclick="closeMenu()" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; z-index:150;"></div>
+<div id="menuBackdrop" class="menu-backdrop" onclick="closeMenu()"></div>
 </body>
 </html>

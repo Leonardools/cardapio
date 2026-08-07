@@ -1,6 +1,6 @@
 ﻿         
 /* === CONTROLE DE VERSÃO / CACHE === */
-const VERSAO_ATUAL = '1.0.6'; // Atualize este número a cada mudança significativa no catálogo ou código
+const VERSAO_ATUAL = '1.0.7'; // Atualize este número a cada mudança significativa no catálogo ou código
 const versaoSalva = localStorage.getItem('versao_site');
 const precisaAtualizarCatalogo = versaoSalva !== VERSAO_ATUAL;
 
@@ -43,7 +43,7 @@ const sampleProducts = [
     { id: 'b11', type:'bebida', title:'Energy Dragon Ice Tea Limao', price:12.00, img:'img/limao.jpg', desc:'Sobre o Sabor: Cha gelado de limao com energetico 473ml'},
 
            /*refrigente */ 
-       { id: 'r1', type:'refrigerante', title:'Sprite Zero açúcar', price:6.00, img:'img/zero sprite.jpg', desc:'Sprite Lata Zero açúcar 350ml'},
+       { id: 'r1', type:'refrigerante', title:'Sprite Zero açúcar', price:6.00, img:'img/zero sprite.jpg', desc:'Sprite Lata Zero açúcar 310ml'},
        { id: 'r2', type:'refrigerante', title:'Sprite', price:6.00, img:'img/sprite.jpg', desc:' Sprite Lata 310ml.'}, 
        { id: 'r3', type:'refrigerante', title:'Coca-Cola Zero Açúcar', price:6.00, img:'img/coca cola zero.jpg', desc:'Coca-Cola Zero 310ml'},
        { id: 'r4', type:'refrigerante', title:'Coca-Cola', price:6.00, img:'img/refrigerante-coca-cola-lata-350ml_jpg.webp', desc:'Coca-Cola 310ml'},
@@ -51,8 +51,7 @@ const sampleProducts = [
        {id:  'r6', type:'refrigerante', title:'Fanta Laranja', price:6.00, img:'img/laranja fanta.jpg', desc:'Fanta Laranja 310ml'},
        { id: 'r7', type:'refrigerante', title:'Coca-Cola 2L', price:14.00, img:'img/images.jpg', desc:'Coca-Cola 2L'},  
        {id: 'r8', type:'refrigerante', title:'Coca-Cola Zero 2L', price:14.00, img:'img/Captura de tela 2026-06-12 132222.png', desc:'Coca-Cola Zero 2L'},
-       
-   
+          
                
 ];
 
@@ -97,7 +96,7 @@ if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]
 
 
 /* ===========================
-   Estado e utilitários               variaveis 
+      Estado e utilitários            variaveis 
    =========================== */
 let currentSection = 'home';
 let selectedProduct = null;
@@ -108,6 +107,23 @@ const whatsNumber = '5561998710947'; // número real do dono do restaurante
 function qs(id){ return document.getElementById(id) }
 function money(v){ return 'R$ ' + Number(v).toFixed(2).replace('.',',') }
 
+function productCardHTML(p, primaryLabel = 'Detalhes', secondaryLabel = 'Adicionar'){
+    return `
+        <img src="${p.img}" alt="${p.title}">
+        <div class="body">
+            <h3>${p.title}</h3>
+            <p class="muted">${p.desc}</p>
+            <div class="product-footer">
+                <div class="price">${money(p.price)}</div>
+                <div class="product-actions">
+                    <button class="btn" onclick="openProduct('${p.id}')">${primaryLabel}</button>
+                    <button class="btn secondary" onclick="addToCart('${p.id}',1)">${secondaryLabel}</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 /* ===========================
    Render inicial
    =========================== */
@@ -116,9 +132,9 @@ function renderInitial(){
     renderProducts();
     renderRefrigerantes(); 
     renderDrinks();
-    renderPromos();
-    renderCombos();
-    renderGallery();
+    if(qs('promoName')) renderPromos();
+    if(qs('combosGrid')) renderCombos();
+    if(qs('gallery')) renderGallery();
     renderCartCount();
     // A chamada para renderAdminPanel() foi removida daqui.
 }
@@ -129,15 +145,20 @@ renderInitial();
    =========================== */
 function showSection(sec){
     document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+    const fallback = qs('homeSection');
     switch(sec){
-        case 'home': qs('homeSection').classList.remove('hidden'); break;
-        case 'cardapio': qs('cardapioSection').classList.remove('hidden'); break;
-        case 'bebidas': qs('bebidasSection').classList.remove('hidden'); break;
-        case 'refrigerantes': qs('refrigerantesSection').classList.remove('hidden'); break;
-        case 'galeria': qs('galeriaSection').classList.remove('hidden'); break;
-        case 'sobre': qs('sobreSection').classList.remove('hidden'); break;
-        case 'eventos': qs('eventosSection').classList.remove('hidden'); break;
-        case 'contato': qs('contatoSection').classList.remove('hidden'); break;
+        case 'home': qs('homeSection')?.classList.remove('hidden'); break;
+        case 'cardapio': qs('cardapioSection')?.classList.remove('hidden'); break;
+        case 'bebidas': qs('bebidasSection')?.classList.remove('hidden'); break;
+        case 'refrigerantes': qs('refrigerantesSection')?.classList.remove('hidden'); break;
+        case 'galeria': qs('galeriaSection')?.classList.remove('hidden'); break;
+        case 'sobre': qs('sobreSection')?.classList.remove('hidden'); break;
+        case 'eventos': qs('eventosSection')?.classList.remove('hidden'); break;
+        case 'contato': qs('contatoSection')?.classList.remove('hidden'); break;
+        default: fallback?.classList.remove('hidden');
+    }
+    if(!document.querySelector('main > section:not(.hidden)')){
+        fallback?.classList.remove('hidden');
     }
     // highlight side nav
     document.querySelectorAll('nav.side button').forEach(b => b.classList.remove('active'));
@@ -175,7 +196,7 @@ function renderQuickGrid(){
     prods.forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="body"><h3>${p.title}</h3><p class="muted">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><div class="price">${money(p.price)}</div><div><button class="btn" onclick="openProduct('${p.id}')">Ver</button><button class="btn secondary" onclick="addToCart('${p.id}',1)">+Carrinho</button></div></div></div>`;
+        div.innerHTML = productCardHTML(p, 'Ver', '+Carrinho');
         grid.appendChild(div);
     });
 }
@@ -195,21 +216,7 @@ function renderProducts(){
     prods.forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = `
-        <img src="${p.img}" alt="${p.title}">
-        <div class="body">
-            <h3>${p.title}</h3>
-            <p class="muted">${p.desc}</p>
-
-            <div class="actions">
-                <div class="price">${money(p.price)}</div>
-                <div style="margin-left:auto">
-                    <button class="btn" onclick="openProduct('${p.id}')">Detalhes</button>
-                    <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button>
-                </div>
-            </div>
-        </div>
-        `;
+        div.innerHTML = productCardHTML(p);
         grid.appendChild(div);
     });
 }
@@ -220,7 +227,7 @@ function renderDrinks(){
     const grid = qs('drinksGrid'); grid.innerHTML = '';
     drinks.forEach(p => {
         const div = document.createElement('div'); div.className='card';
-        div.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="body"><h3>${p.title}</h3><p class="muted">${p.desc}</p><div style="display:flex;justify-content:space-between;align-items:center"><div class="price">${money(p.price)}</div><div><button class="btn" onclick="openProduct('${p.id}')">Detalhes</button> <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button></div></div></div>`;
+        div.innerHTML = productCardHTML(p);
         grid.appendChild(div);
     });
 }
@@ -243,20 +250,7 @@ function renderDrinks(){
     refris.forEach(p => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = `
-            <img src="${p.img}" alt="${p.title}">
-            <div class="body">
-                <h3>${p.title}</h3>
-                <p class="muted">${p.desc}</p>
-                <div class="actions">
-                    <div class="price">${money(p.price)}</div>
-                    <div style="margin-left:auto">
-                        <button class="btn" onclick="openProduct('${p.id}')">Detalhes</button>
-                        <button class="btn secondary" onclick="addToCart('${p.id}',1)">Adicionar</button>
-                    </div>
-                </div>
-            </div>
-        `;
+        div.innerHTML = productCardHTML(p);
         grid.appendChild(div);
     });
 }
@@ -294,9 +288,8 @@ function renderReviews(pid){
     if(list.length===0) container.innerHTML = '<div class="muted">Seja o primeiro a avaliar!</div>';
     list.forEach(r => {
         const d = document.createElement('div');
-        d.style.borderTop='1px dashed rgba(0,0,0,0.06)';
-        d.style.padding='8px 0';
-        d.innerHTML = `<div style="display:flex;justify-content:space-between"><strong>${r.name}</strong><div>${'*'.repeat(r.star)}</div></div><div class="muted">${r.text}</div>`;
+        d.className = 'review-item';
+        d.innerHTML = `<div class="review-heading"><strong>${r.name}</strong><div>${'*'.repeat(r.star)}</div></div><div class="muted">${r.text}</div>`;
         container.appendChild(d);
     });
 }
@@ -353,7 +346,7 @@ function renderCart(){
     const cont = qs('cartItems'); cont.innerHTML = '';
     if(c.length===0){ cont.innerHTML = '<div class="muted">Seu carrinho esta vazio</div>'; qs('cartTotal').innerText = money(0); return; }
     c.forEach(item=>{
-        const row = document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='8px 0'; 
+        const row = document.createElement('div'); row.className = 'cart-row';
         row.innerHTML = `<div><strong>${item.title}</strong><div class="muted">Qtd: ${item.qty} x ${money(item.price)}</div></div><div><button class="btn" onclick="changeQty('${item.id}',1)">+</button> <button class="btn secondary" onclick="changeQty('${item.id}',-1)">-</button> <button class="btn secondary" onclick="removeFromCart('${item.id}')">Remover</button></div>`;
         cont.appendChild(row);
     });
@@ -410,7 +403,6 @@ function checkoutWhatsApp(){
  *Observacoes:* 
 
  Aguardando confirmacao do pedido. Obrigado!`;
-
     openWhatsApp(text);
 }
 
@@ -427,6 +419,7 @@ function openWhatsApp(text){
    Promoções & Combos (mantido)
    =========================== */
 function renderPromos(){
+    if(!qs('promoName') || !qs('promoTimer')) return;
     const end = new Date(); end.setHours(23,59,59,999);
     startPromoTimer(end);
     const prods = getProducts();
@@ -436,6 +429,7 @@ function renderPromos(){
 }
 
 function startPromoTimer(endDate){
+    if(!qs('promoTimer')) return;
     function update(){
         const now = new Date();
         let diff = Math.max(0, endDate - now);
@@ -461,11 +455,25 @@ function addPromoToCart(){
 }
 
 function renderCombos(){
-    const grid = qs('combosGrid'); grid.innerHTML = '';
+    const grid = qs('combosGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
     const combos = getCombos();
     combos.forEach(c=>{
         const card = document.createElement('div'); card.className='card';
-        card.innerHTML = `<img src="${c.img}" alt="${c.title}"><div class="body"><h3>${c.title}</h3><p class="muted">${c.desc}</p><div style="display:flex;justify-content:space-between;align-items:center"><div class="price">${money(c.price)}</div><div><button class="btn" onclick="addCombo('${c.id}')">Adicionar</button></div></div></div>`;
+        card.innerHTML = `
+            <img src="${c.img}" alt="${c.title}">
+            <div class="body">
+                <h3>${c.title}</h3>
+                <p class="muted">${c.desc}</p>
+                <div class="product-footer">
+                    <div class="price">${money(c.price)}</div>
+                    <div class="product-actions">
+                        <button class="btn" onclick="addCombo('${c.id}')">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        `;
         grid.appendChild(card);
     });
 }
@@ -484,7 +492,9 @@ function addCombo(id){
    =========================== */
 function renderGallery(){
     const imgs = JSON.parse(localStorage.getItem('gallery') || '[]');
-    const container = qs('gallery'); container.innerHTML = '';
+    const container = qs('gallery');
+    if(!container) return;
+    container.innerHTML = '';
     imgs.forEach(src=>{
         const img = document.createElement('img'); img.src=src;
         img.onclick = ()=> openLightbox(src);
@@ -493,8 +503,9 @@ function renderGallery(){
 }
 function openLightbox(src){
     const lb = document.createElement('div');
-    lb.style.position='fixed'; lb.style.inset=0; lb.style.background='rgba(0,0,0,0.8)'; lb.style.display='flex'; lb.style.alignItems='center'; lb.style.justifyContent='center'; lb.style.zIndex=120;
-    const img = document.createElement('img'); img.src=src; img.style.maxWidth='90%'; img.style.maxHeight='90%'; img.style.borderRadius='12px';
+    lb.className = 'lightbox';
+    const img = document.createElement('img');
+    img.src=src;
     lb.appendChild(img);
     lb.onclick = ()=> lb.remove();
     document.body.appendChild(lb);
@@ -532,8 +543,7 @@ function generateQR(){
    =========================== */
 function openAdmin(){
     const panel = qs('adminPanel');
-    // Esta função alterna entre 'none' e 'block' (esconde/mostra)
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    panel.classList.toggle('hidden-panel');
 }
 
 function unlockAdmin(){
@@ -554,15 +564,16 @@ function openAdminModal(){
             return;
         }
     const modalRoot = document.createElement('div');
-    modalRoot.style.position='fixed'; modalRoot.style.inset=0; modalRoot.style.background='rgba(0,0,0,0.45)'; modalRoot.style.display='flex'; modalRoot.style.alignItems='center'; modalRoot.style.justifyContent='center'; modalRoot.style.zIndex=200;
-    const box = document.createElement('div'); box.style.background = getComputedStyle(document.body).getPropertyValue('--card'); box.style.padding='18px'; box.style.borderRadius='12px'; box.style.width='600px'; box.style.maxHeight='90vh'; box.style.overflow='auto';
+    modalRoot.className = 'admin-modal';
+    const box = document.createElement('div');
+    box.className = 'admin-modal-box';
     box.innerHTML = `<h3>Painel Admin - Adicionar Produto</h3>
-        <label>Titulo</label><input id="adm_title" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
-        <label>Tipo (Doces|bebida)</label><input id="adm_type" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px" value="espetinho">
-        <label>Preco</label><input id="adm_price" type="number" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
-        <label>Imagem URL</label><input id="adm_img" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px">
-        <label>Descricao</label><textarea id="adm_desc" style="width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin-top:6px"></textarea>
-        <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="admAdd">Adicionar</button><button class="btn secondary" id="admClose">Fechar</button></div>
+        <label>Titulo</label><input id="adm_title" class="form-control">
+        <label>Tipo (Doces|bebida)</label><input id="adm_type" class="form-control" value="espetinho">
+        <label>Preco</label><input id="adm_price" class="form-control" type="number">
+        <label>Imagem URL</label><input id="adm_img" class="form-control">
+        <label>Descricao</label><textarea id="adm_desc" class="form-control"></textarea>
+        <div class="button-row"><button class="btn" id="admAdd">Adicionar</button><button class="btn secondary" id="admClose">Fechar</button></div>
         <hr><h4>Produtos Existentes</h4><div id="admList"></div>
     `;
     modalRoot.appendChild(box);
@@ -584,7 +595,8 @@ function openAdminModal(){
         const list = getProducts();
         qs('admList').innerHTML = '';
         list.forEach(p=>{
-            const row = document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='6px 0';
+            const row = document.createElement('div');
+            row.className = 'admin-row';
             row.innerHTML = `<div><strong>${p.title}</strong> <span class="muted">(${p.type})</span><div class="muted">${money(p.price)}</div></div><div><button class="btn secondary" onclick="deleteProduct('${p.id}', this)">Remover</button></div>`;
             qs('admList').appendChild(row);
         });
