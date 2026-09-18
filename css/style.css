@@ -1,6 +1,6 @@
 ﻿/* VARIÁVEIS DE TEMA */
     :root{
-        --bg:#f6f6f6; --card:#fff; --accent:#f63409; --accent-2:#4b2f11; --text:#222;
+        --bg:#f6f6f6; --card:#fff; --accent:#f4c350; --accent-2:#4b2f11; --text:#222;
         --glass: rgba(255,255,255,0.6);
         --header-height: 66px; /* Altura do cabeçalho fixo */
     }
